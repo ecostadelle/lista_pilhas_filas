@@ -24,13 +24,15 @@ public:
     }
     void insereInicio(int x){
         decrementa(&inicio);
-        tamanho++;
-        dado[inicio] = x;
+        this->tamanho++;
+        this->dado[inicio] = x;
+        std::cout << x << " inserido no inicio: " << inicio << "\n";
     }
     void insereFim(int x){
         incrementa(&fim);
-        tamanho++;
-        dado[fim] = x;
+        this->tamanho++;
+        this->dado[fim] = x;
+        std::cout << x << " inserido no fim: " << fim << "\n";
     }
     auto buscaInicio(){
         return dado[inicio];

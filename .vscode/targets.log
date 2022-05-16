@@ -1,0 +1,295 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+ 
+# Built for x86_64-pc-msys
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Mon May 16 19:48:47 2022
+
+# Variables
+
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+ 
+# environment
+USERPROFILE = C:\Users\Ewerton
+# environment
+LOCALAPPDATA = C:\Users\Ewerton\AppData\Local
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-00e67456-0d8d-4afb-9f43-cc3934424c5e-sock
+# environment
+VSCODE_CWD = C:\Users\Ewerton\AppData\Local\Programs\Microsoft VS Code
+# environment
+SYSTEMROOT = C:\Windows
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Windows\system32\WindowsPowerShell\v1.0\Modules\
+# environment
+GOOGLE_API_KEY = no
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3792_PJOTIVFUVDYBWMWD
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LDRAWDIR = C:\Users\Public\Documents\LDraw
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\Ewerton\AppData\Roaming\Code\CachedData\da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+# environment
+LANG = C
+# environment
+OMP_NUM_THREADS = 4
+# default
+.LOADED := 
+# environment
+TMP = /c/Users/Ewerton/AppData/Local/Temp
+# default
+.INCLUDE_DIRS = /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /c/github/edAtividade4/lista_pilhas_filas
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+PROGRAMFILES = C:\Program Files
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+!C: = c:\github\edAtividade4\lista_pilhas_filas
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 3792
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+GOOGLE_DEFAULT_CLIENT_ID = no
+# environment
+C_EM64T_REDIST11 = C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"74ce6549a467d1dfaba55fb5394742c9.pt-br","_translationsConfigFile":"C:\\Users\\Ewerton\\AppData\\Roaming\\Code\\clp\\74ce6549a467d1dfaba55fb5394742c9.pt-br\\tcf.json","_cacheRoot":"C:\\Users\\Ewerton\\AppData\\Roaming\\Code\\clp\\74ce6549a467d1dfaba55fb5394742c9.pt-br","_resolvedLanguagePackCoreLocation":"C:\\Users\\Ewerton\\AppData\\Roaming\\Code\\clp\\74ce6549a467d1dfaba55fb5394742c9.pt-br\\da15b6fd3ef856477bf6f4fb29ba1b7af717770d","_corruptedFile":"C:\\Users\\Ewerton\\AppData\\Roaming\\Code\\clp\\74ce6549a467d1dfaba55fb5394742c9.pt-br\\corrupted.info","_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-msys
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := /bin/sh
+# environment
+HOMEPATH = \Users\Ewerton
+# default
+MAKECMDGOALS := all
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# environment
+WINDIR = C:\Windows
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /c/Program Files (x86)/Common Files/Oracle/Java/javapath:/c/Program Files (x86)/Common Files/Intel/Shared Files/cpp/bin/Intel64:/c/ProgramData/Oracle/Java/javapath:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/c/Program Files (x86)/Mercurial:/c/melpcnc/bin32:/c/Program Files/MELSOFT/EZSocketNc/CommServer/M700:/c/Users/Ewerton/AppData/Local/Programs/MiKTeX/miktex/bin/x64:/mingw64/bin:/usr/bin:/c/Program Files (x86)/Arduino/hardware/tools/avr/bin:/c/Program Files/Git/cmd:/c/Users/Ewerton/AppData/Local/Programs/Python/Python37/Scripts:/c/Users/Ewerton/AppData/Local/Programs/Python/Python37:/c/Program Files (x86)/GNU Tools ARM Embedded/6 2017-q2-update/bin:/c/Program Files (x86)/GNU Tools Arm Embedded/7 2018-q2-update/bin:/c/Users/Ewerton/Documents/Celular/PhoenixSuit_V1.09/PhoenixSuit_V1.09:/c/Users/Ewerton/AppData/Local/Programs/MiKTeX/miktex/bin/x64:/c/Users/Ewerton/AppData/Local/Programs/Microsoft VS Code/bin:/mingw64/bin:/c/Program Files/MiKTeX/miktex/bin/x64
+# environment
+COMPUTERNAME = ACER
+# default
+MAKEFILES := 
+# environment
+PHOENIXPATH = C:\Users\Ewerton\Documents\Celular\PhoenixSuit_V1.09\PhoenixSuit_V1.09\
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# environment
+LOGONSERVER = \\ACER
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = Ewerton
+# environment
+COMMONPROGRAMFILES = C:\Program Files\Common Files
+# environment
+AUTINSTLOG = C:\ProgramData\Siemens\Automation\Logfiles\Setup\
+# environment
+ADSK_CLM_WPAD_PROXY_CHECK = FALSE
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = Acer
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# environment
+FP_NO_HOST_CHECK = NO
+# makefile
+.DEFAULT_GOAL := output
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = Acer
+# environment
+NUMBER_OF_PROCESSORS = 4
+# environment
+PUBLIC = C:\Users\Public
+# environment
+APPDATA = C:\Users\Ewerton\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = AMD64
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /c/SPB_Data
+# environment
+VXIPNPPATH = C:\Program Files (x86)\IVI Foundation\VISA\
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = /c/Users/Ewerton/AppData/Local/Temp
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\3ceed48cc5af7a8ebafb68f1c5cd32a1-1.67.1-main-sock
+# environment
+TERM = cygwin
+# environment
+GOOGLE_DEFAULT_CLIENT_SECRET = no
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+ 
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = Console
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+PROCESSOR_REVISION = 3a09
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+# variable set hash-table stats:
+# Load=103/1024=10%, Rehash=0, Collisions=12/130=9%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 3501335451, inode 3096224745485963): 11 files, no impossibilities.
+
+# 11 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-16 19:45:41.3059089
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 7):
+	rm *.exe
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+output:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 3):
+	g++ --std=c++17 -fconcepts main.cpp -o app
+	./app
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/16=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 17 / storage = 148 B / avg = 8 B
+# current buf: size = 8162 B / used = 148 B / count = 17 / avg = 8 B
+
+# strcache performance: lookups = 23 / hit rate = 26%
+# hash-table stats:
+# Load=17/8192=0%, Rehash=0, Collisions=0/23=0%
+# Finished Make data base on Mon May 16 19:48:48 2022
+
+ 
