@@ -1,20 +1,55 @@
+const int MAXDEQUE = 100;
+
 // implementação do TAD deque
-
-class meuDeque
+class dequeSequencial
 {
+private:
+    int inicio=0, fim=0, tamanho=0;
+    int dado[MAXDEQUE];
 public:
-    int inicio, fim, tamanho, ;
-    int dado;
-};
+    void incrementa(int * a){
+        if ( (tamanho < MAXDEQUE) && (tamanho >= 0) ) {
+            // rotinas para incrmentar e manter a variável dentro do ciclo
+            *a++; 
+            *a %= MAXDEQUE;
+        }
+    }
+    void decrementa(int * a){
+        if ( (tamanho < MAXDEQUE) && (tamanho >= 0) ) {
+            // rotinas para decrementar e manter a variável dentro do ciclo
+            *a--; 
+            *a += MAXDEQUE;
+            *a %= MAXDEQUE;
+        }
+    }
+    void insereInicio(int x){
+        decrementa(&inicio);
+        tamanho++;
+        dado[inicio] = x;
+    }
+    void insereFim(int x){
+        incrementa(&fim);
+        tamanho++;
+        dado[fim] = x;
+    }
+    auto buscaInicio(){
+        return dado[inicio];
+    }
+    auto buscaFim(){
+        return dado[fim];
+    }
 
-int teste(){
-    return 0;
-}
-/*
-typedef class coord
-{
-   void P(x,y);
-   unsigned x;
-   unsigned y;
-} COORD;
-*/
+    auto removeInicio(){
+        int buffer = buscaInicio();
+        tamanho--;
+        incrementa(&inicio);
+        return buffer;
+    }
+    auto removeFim(){
+        int buffer = buscaFim();
+        tamanho--;
+        decrementa(&fim);
+        return buffer;
+
+    }
+};
