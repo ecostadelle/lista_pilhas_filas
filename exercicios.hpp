@@ -1,3 +1,5 @@
+#include <stack>
+
 const int MAXDEQUE = 100;
 
 // implementação do TAD deque
@@ -55,3 +57,30 @@ public:
 
     }
 };
+
+void polonesa(char* expressao, int N, char* saida_polonesa) 
+// 'expressao' eh um string terminado em '\0', 
+// com tamanho N (sem contar o '\0')
+// 'saida_polonesa' eh um string com capacidade máxima N 
+{ 
+    // escreva o resultado no string 'saida_polonesa' 
+
+    // pilha para armazenar os operadores
+    std::stack<char> operadores;
+
+    //vetor para armazenar a saida
+    char saida[N];
+
+    // posicao para escrever no vetor de saida
+    int posicao = 0;
+    for (int i=0; i<N; ++i){
+        // condicional para detectar se é uma letra maiúscula
+        if ( (expressao[i] >= 'A') && (expressao[i] <= 'Z') ) {
+            saida[posicao] = expressao[i];
+        } else if (expressao[i] == ')') {
+            saida[posicao] = operadores.top();
+            operadores.pop();
+            operadores.pop();
+        }
+    }
+}

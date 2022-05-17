@@ -7,9 +7,8 @@ make: *** No rule to make target 'all'.  Stop.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Mon May 16 20:00:20 2022
+# Make data base, printed on Tue May 17 12:20:41 2022
 
 # Variables
 
@@ -22,7 +21,7 @@ USERPROFILE = C:\Users\Ewerton
 # environment
 LOCALAPPDATA = C:\Users\Ewerton\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-00e67456-0d8d-4afb-9f43-cc3934424c5e-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-d8b26493-2d1d-42c5-af46-2177f8cfaebe-sock
 # environment
 VSCODE_CWD = C:\Users\Ewerton\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -38,7 +37,7 @@ MAKE_COMMAND := make
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3792_PJOTIVFUVDYBWMWD
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_8548_VQAWPXANAAPTMFXP
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -72,13 +71,12 @@ CURDIR := /c/github/edAtividade4/lista_pilhas_filas
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 PROGRAMFILES = C:\Program Files
 # environment
- 
 MFLAGS = -pqrR
 # default
 .SHELLFLAGS := -c
@@ -95,7 +93,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3792
+VSCODE_PID = 8548
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
@@ -242,7 +240,7 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-16 20:00:00.3167735
+#  Last modified 2022-05-17 09:05:12.3928356
 #  File has been updated.
 #  Successfully updated.
 
@@ -250,7 +248,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 7):
+#  recipe to execute (from 'Makefile', line 8):
 	rm -rf *.exe
 
 # Not a target:
@@ -266,6 +264,7 @@ output:
 #  recipe to execute (from 'Makefile', line 3):
 	g++ --std=c++17 -fconcepts main.cpp -o app
 	./app
+	rm -rf app.exe
 
 # Not a target:
 all:
@@ -282,12 +281,12 @@ all:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 17 / storage = 148 B / avg = 8 B
-# current buf: size = 8162 B / used = 148 B / count = 17 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 17 / storage = 156 B / avg = 9 B
+# current buf: size = 8162 B / used = 156 B / count = 17 / avg = 9 B
 
 # strcache performance: lookups = 23 / hit rate = 26%
 # hash-table stats:
 # Load=17/8192=0%, Rehash=0, Collisions=0/23=0%
-# Finished Make data base on Mon May 16 20:00:20 2022
+# Finished Make data base on Tue May 17 12:20:42 2022
 
  
