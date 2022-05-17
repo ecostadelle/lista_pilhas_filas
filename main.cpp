@@ -1,7 +1,9 @@
 #include <iostream>
-#include "exercicios.hpp"
 
 using namespace std;
+
+#include "exercicios.hpp"
+
 
 int main()
 {
