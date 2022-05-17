@@ -3,8 +3,8 @@
 
 using namespace std;
 
-
-int main(){
+int main()
+{
     dequeSequencial deque;
     deque.insereInicio(5);
     deque.insereFim(7);

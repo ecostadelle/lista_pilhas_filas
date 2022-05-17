@@ -2,7 +2,6 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.3
- 
 # Built for x86_64-pc-msys
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -10,7 +9,7 @@ make: *** No rule to make target 'all'.  Stop.
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Mon May 16 19:48:47 2022
+# Make data base, printed on Mon May 16 20:00:20 2022
 
 # Variables
 
@@ -18,7 +17,6 @@ make: *** No rule to make target 'all'.  Stop.
 SYSTEMDRIVE = C:
 # environment
 LC_ALL = C
- 
 # environment
 USERPROFILE = C:\Users\Ewerton
 # environment
@@ -80,6 +78,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 PROGRAMFILES = C:\Program Files
 # environment
+ 
 MFLAGS = -pqrR
 # default
 .SHELLFLAGS := -c
@@ -209,7 +208,6 @@ GOOGLE_DEFAULT_CLIENT_SECRET = no
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
- 
 # default
 SUFFIXES := 
 # environment
@@ -244,7 +242,7 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-16 19:45:41.3059089
+#  Last modified 2022-05-16 20:00:00.3167735
 #  File has been updated.
 #  Successfully updated.
 
@@ -253,7 +251,7 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 7):
-	rm *.exe
+	rm -rf *.exe
 
 # Not a target:
 .DEFAULT:
@@ -290,6 +288,6 @@ all:
 # strcache performance: lookups = 23 / hit rate = 26%
 # hash-table stats:
 # Load=17/8192=0%, Rehash=0, Collisions=0/23=0%
-# Finished Make data base on Mon May 16 19:48:48 2022
+# Finished Make data base on Mon May 16 20:00:20 2022
 
  

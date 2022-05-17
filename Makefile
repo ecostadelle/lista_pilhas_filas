@@ -4,4 +4,4 @@ output:
 	./app
 
 clean:
-	rm *.exe
+	rm -rf *.exe
