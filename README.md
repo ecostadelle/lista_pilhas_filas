@@ -207,3 +207,5 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
     >   2. o operador de maior precedência é desempilhado, inserido na saída e o novo operador é empilhado.
     >
     > Ao chegar ao final do laço, todos os operadores são desempilhados e inseridos na saída.
+    >
+    > Com o objetivo de determinar as precedências, utilizou-se o código ASCII do caracter subtraído de 41 em módulo 6. Esta tranformação faz com que o carcter '*' (decimal 42), torne-se 1; '+' (decimal 43), torne-se 2; '-' (decimal 45), torne-se 4; e, por fim, o caracter '/' (decimal 47), torne-se 0. 
