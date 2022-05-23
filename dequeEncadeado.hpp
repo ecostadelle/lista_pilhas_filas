@@ -1,5 +1,3 @@
-#include <assert.h>
-
 template<typename T>
 class NoDeque
 {
@@ -104,7 +102,10 @@ public:
 };
 
 template <typename Agregado, typename Tipo>
-concept bool dequeTAD = requires(Agregado a, Tipo t) {
+
+// o intelliSense reclamou do 'concept bool' até eu 
+// corrigir na configuração e compiar em c++20
+concept dequeTAD = requires(Agregado a, Tipo t) {
     // requer operação de consulta ao elemento 'inicio'
     {a.buscaInicio()};
     // requer operação de consulta ao elemento 'fim'
@@ -120,4 +121,4 @@ concept bool dequeTAD = requires(Agregado a, Tipo t) {
 };
 
 // verifica agregado DequeEnc
-static_assert(dequeTAD<DequeEnc, char>, "Erro");
+static_assert(dequeTAD<DequeEnc<char>, char>, "Erro");

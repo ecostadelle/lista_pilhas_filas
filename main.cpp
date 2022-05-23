@@ -2,7 +2,7 @@
 #include <string>
 
 #include "dequeSequencial.hpp"
-#include "dequeEncChar.hpp"
+#include "dequeEncadeado.hpp"
 #include "rpn.hpp"
 
 using namespace std;
