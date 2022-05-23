@@ -1,28 +1,12 @@
 #include <iostream>
 #include <string>
 
+#include "dequeSequencial.hpp"
+#include "dequeEncChar.hpp"
+#include "rpn.hpp"
+
 using namespace std;
 
-#include "dequeSequencial.hpp"
-#include "dequeEncadeado.hpp"
-#include "rpn.hpp"
-/*
-template <typename Agregado, typename Tipo>
-concept bool dequeTAD = requires(Agregado a, Tipo t) {
-    // requer operação de consulta ao elemento 'inicio'
-    {a.inicio()};
-    // requer operação de consulta ao elemento 'fim'
-    {a.fim()};
-    // requer operação 'insereInicio' sobre tipo 't'
-    {a.insereInicio(t)};
-    // requer operação 'insereFim' sobre tipo 't'
-    {a.insereFim(t)};
-    // requer operação 'removeInicio' e retorna tipo 't'
-    {a.removeInicio()};
-    // requer operação 'removeFim' e retorna tipo 't'
-    {a.removeFim()};
-};
-*/
 
 int main()
 {
@@ -33,5 +17,3 @@ int main()
          << saida << endl;
     return 0;
 }
-
-// write a function that calcule a factorial

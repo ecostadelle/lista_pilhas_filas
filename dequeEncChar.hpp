@@ -1,21 +1,17 @@
-#include <assert.h>
-
-template<typename T>
 class NoDeque
 {
 public:
-    T dado;
-    NoDeque<T> *prox;
-    NoDeque<T> *ante;
+    char dado;
+    NoDeque *prox;
+    NoDeque *ante;
 };
 
-template<typename T>
 class DequeEnc
 {
     
 private:
-    NoDeque<T> *inicio;           // frente da fila
-    NoDeque<T> *fim;              // fundo da fila
+    NoDeque *inicio;           // frente da fila
+    NoDeque *fim;              // fundo da fila
     int N;
 
 public:
@@ -39,20 +35,20 @@ public:
     }
 
     auto buscaInicio() {
-        NoDeque<T> *p = inicio;   // ponteiro do inicio
+        NoDeque *p = inicio;   // ponteiro do inicio
         auto r = p->dado;         // conteudo do inicio
         return r;
     }
 
     auto buscaFim() {
-        NoDeque<T> *p = fim;      // ponteiro do fim
+        NoDeque *p = fim;      // ponteiro do fim
         auto r = p->dado;         // conteudo do fim
         return r;
     }
 
-    void insereInicio(T v)
+    void insereInicio(char v)
     {
-        NoDeque<T> *no = new NoDeque<T>{.dado = v, .prox = 0, .ante = 0};
+        NoDeque *no = new NoDeque{.dado = v, .prox = 0, .ante = 0};
         if (N == 0)
         {
             inicio = fim = no;
@@ -66,9 +62,9 @@ public:
         N++;
     }
 
-    void insereFim(T v)
+    void insereFim(char v)
     {
-        NoDeque<T> *no = new NoDeque<T>{.dado = v, .prox = 0, .ante = 0};
+        NoDeque *no = new NoDeque{.dado = v, .prox = 0, .ante = 0};
         if (N == 0)
         {
             inicio = fim = no;
@@ -84,7 +80,7 @@ public:
 
     char removeInicio()
     {
-        NoDeque<T> *p = inicio;   // ponteiro da frente
+        NoDeque *p = inicio;   // ponteiro da frente
         inicio = inicio->prox;    // avança fila
         auto r = p->dado;         // conteudo da frente
         delete p;                 // apaga frente
@@ -94,7 +90,7 @@ public:
 
     auto removeFim()
     {
-        NoDeque<T> *p = fim;      // ponteiro da frente
+        NoDeque *p = fim;      // ponteiro da frente
         fim = fim->ante;          // avança fila
         auto r = p->dado;         // conteudo da frente
         delete p;                 // apaga frente
@@ -120,4 +116,4 @@ concept bool dequeTAD = requires(Agregado a, Tipo t) {
 };
 
 // verifica agregado DequeEnc
-static_assert(dequeTAD<DequeEnc, char>, "Erro");
+static_assert(dequeTAD<DequeEnc, char>);

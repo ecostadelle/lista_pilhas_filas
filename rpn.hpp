@@ -14,7 +14,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
     // (DequeSeq ou DeqEnc, ambos funcionam). 
     // Porém, restringiu-se a executar operações 
     // apenas em uma extremidade.
-    DequeEnc<char> operadores;
+    DequeEnc operadores;
     operadores.cria();
     // posicao para escrever no vetor de saida
     int posicao = 0;
