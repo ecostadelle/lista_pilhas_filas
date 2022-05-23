@@ -11,10 +11,11 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
     // escreva o resultado no string 'saida_polonesa'
 
     // pilha para armazenar os operadores
-    // foi utilizado o deque sequencial porém 
-    // restringiu-se a executar operações 
+    // (DequeSeq ou DeqEnc, ambos funcionam). 
+    // Porém, restringiu-se a executar operações 
     // apenas em uma extremidade.
-    DequeTAD<char> operadores;
+    DequeEnc<char> operadores;
+    operadores.cria();
     // posicao para escrever no vetor de saida
     int posicao = 0;
 
@@ -41,7 +42,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
                 cout << "Desempilha :"
                      << buffer
                      << " Tamanho: "
-                     << operadores.tamanho
+                     << operadores.tamanho()
                      << endl;
             }
             // ao sair do laço remove o '('
@@ -49,19 +50,19 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             cout << "Remove :"
                      << buffer
                      << " Tamanho: "
-                     << operadores.tamanho
+                     << operadores.tamanho()
                      << endl;
         }
         else if (dado == 0)
         {
-            while (operadores.tamanho not_eq 0)
+            while (operadores.tamanho() not_eq 0)
             {
                 auto buffer = operadores.removeFim();
                 saida_polonesa[posicao++] = buffer;
                 cout << "Limpa :"
                      << buffer
                      << " Tamanho: "
-                     << operadores.tamanho
+                     << operadores.tamanho()
                      << endl;
             }
             
@@ -73,9 +74,9 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             cout << "Empilha :"
                  << dado
                  << " Tamanho: "
-                 << operadores.tamanho
+                 << operadores.tamanho()
                  << endl;
         }
     }
-    // saida_polonesa[++posicao] = 0;
+    operadores.libera();
 }

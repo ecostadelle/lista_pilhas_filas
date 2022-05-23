@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "dequeSequencial.hpp"
+#include "dequeEncadeado.hpp"
 #include "rpn.hpp"
 /*
 template <typename Agregado, typename Tipo>
@@ -32,3 +33,5 @@ int main()
          << saida << endl;
     return 0;
 }
+
+// write a function that calcule a factorial
