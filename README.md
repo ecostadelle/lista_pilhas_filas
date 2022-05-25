@@ -41,7 +41,7 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
 
     > ### Resposta
     > 
-    > A fim de responder essa questão foram implementados tanto o deque [sequencial](include/dequeSequencial.hpp) quanto o [encadeado](include/dequeEncadeado.hpp). 
+    > A fim de responder essa questão implementei tanto o deque [sequencial](include/dequeSequencial.hpp) quanto o [encadeado](include/dequeEncadeado.hpp). Porém, me limitei a comentar apenas no deque [encadeado](include/dequeEncadeado.hpp) porque foi o que trouxe maior aprendizado. Antes de implementá-lo, a alocação dinâmica era bem nebulosa para mim.
     >
     > Preferi utilizar o tipo genérico, de modo que a implementação pudesse ser reaproveitada nos exercícios posteriores. 
     > 
