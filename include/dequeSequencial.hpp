@@ -1,3 +1,6 @@
+#ifndef _DEQUE_SEQUENCIAL
+#define _DEQUE_SEQUENCIAL
+
 const int MAXDEQUE = 100;
 
 // implementação do TAD deque
@@ -70,3 +73,5 @@ public:
         return buffer;
     }
 };
+
+#endif

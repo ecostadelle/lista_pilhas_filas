@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "dequeSequencial.hpp"
-#include "dequeEncadeado.hpp"
-#include "rpn.hpp"
+//#include "dequeSequencial.hpp"
+#include "../include/dequeEncadeado.hpp"
+#include "../include/rpn.hpp"
 
 using namespace std;
 

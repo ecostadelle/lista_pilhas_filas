@@ -39,6 +39,13 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
     static_assert(DequeTAD<Deque, char>); 
     ```
 
+    > ### Resposta
+    > 
+    > A fim de responder essa questão foram implementados tanto o deque [sequencial](include/dequeSequencial.hpp) quanto o [encadeado](include/dequeEncadeado.hpp). 
+    >
+    > Preferi utilizar o tipo genérico, de modo que a implementação pudesse ser reaproveitada nos exercícios posteriores. 
+    > 
+
     b. Implemente uma estrutura PilhaDeque para tipo 'char', utilizando somente um Deque como armazenamento interno e mais espaço auxiliar constante:
 
     ```cpp
