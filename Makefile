@@ -1,3 +1,9 @@
+# MAKEFILE extraido do site
+# http://polaris.s.kanazawa-u.ac.jp/~npozar/intro-to-make.html
+
+# MANUAL GNU MAKE disponível em
+# https://www.gnu.org/software/make/manual/make.pdf
+
 # we can define variables in a makefile
 # variable CC will specify the compiler; feel free to use clang++
 CC:=g++
@@ -16,8 +22,10 @@ HEADERS:=$(wildcard src/*.h)
 # this will contain the names of all intermediate object files
 OBJECTS:=$(patsubst src/%.cpp,bin/%.o,$(SRCS))
 
+# chamada do programa compilado utilizando Variáveis Automáticas
 all:	bin/myprogram
 	$^
+
 # this rule is fancier now
 # $< are the names of all prerequisites (the object files)
 # $@ is the name of the target (bin/myprogram in this case)
