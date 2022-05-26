@@ -42,4 +42,6 @@ public:
     T removeFim();
 };
 
+#include "dequeEncadeado.cpp"
+
 #endif

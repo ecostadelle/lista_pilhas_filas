@@ -11,28 +11,21 @@ CC_OPTS:=-std=c++20 -fconcepts
 SRCS:=$(wildcard src/*.cpp)
 
 # variable with all header files
-INCLUDE:=$(wildcard include/*.cpp)
-
-CPP:= $(INCLUDE) $(SRCS)
-
-# variable with all header files
-HEADERS:=$(wildcard include/*.h)
+HEADERS:=$(wildcard src/*.h)
 
 # this will contain the names of all intermediate object files
-OBJECTS:=$(patsubst include/%.cpp,bin/%.o,$(INCLUDE)) $(patsubst src/%.cpp,bin/%.o,$(SRCS)) 
+OBJECTS:=$(patsubst src/%.cpp,bin/%.o,$(SRCS))
 
+all:	bin/myprogram
+	$^
 # this rule is fancier now
 # $< are the names of all prerequisites (the object files)
 # $@ is the name of the target (bin/myprogram in this case)
-./bin/app.exe: ./bin/main.o ./bin/dequeEncadeado.o
+bin/myprogram: $(OBJECTS)
 	$(CC) $^ $(CC_OPTS) -o $@
-	./bin/app
 
 # but now we have to tell make how to build the object files
 # -c option tells g++ to only compile one source file at a tile
 #  $< is the name of the first prerequisite (the cpp file in this case)
-./bin/dequeEncadeado.o:
-#	$(CC) $(filter %.cpp,$(CPP))
-	$(CC) ./include/dequeEncadeado.cpp $(CC_OPTS) -c -o ./bin/dequeEncadeado.o
-	$(CC) ./src/main.cpp $(CC_OPTS) -c -o ./bin/main.o
-	
+bin/%.o: src/%.cpp $(HEADERS)
+	$(CC) $< $(CC_OPTS) -c -o $@

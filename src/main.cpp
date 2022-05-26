@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 
-#include "..\include\dequeEncadeado.h"
 #include "..\include\rpn.hpp"
 
 int main()
@@ -14,7 +13,7 @@ int main()
               << std::endl;
     return 0;
 }
-/*
+
 template <typename Agregado, typename Tipo>
 concept DequeTAD = requires(Agregado a, Tipo t) {
     // requer operação de consulta ao elemento 'inicio'
@@ -34,6 +33,7 @@ concept DequeTAD = requires(Agregado a, Tipo t) {
 // testa se Deque está correto 
 static_assert(DequeTAD<Deque<char>, char>); 
 
+/*
 template <typename Agregado, typename Tipo>
 concept PilhaTAD = requires(Agregado a, Tipo t) {
     // requer operação de consulta ao elemento 'fim'

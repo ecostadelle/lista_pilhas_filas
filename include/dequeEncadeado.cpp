@@ -41,7 +41,7 @@ template <typename T>
 void Deque<T>::insereFim(T v) // A operação deste método é muito
 {                          // semelhante à anterior, difere apenas
     NoDeque<T> *no =       // na extremidade em que é realizada.
-        new NoDeque     // Esse método tem complexidade O(1).
+        new NoDeque<T>     // Esse método tem complexidade O(1).
         {.dado = v,
          .prox = nullptr,
          .ante = nullptr};
