@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stack>
 
-using namespace std;
+#include "dequeEncadeado.h"
+//#include "pilhaDeque.hpp"
+
 
 void polonesa(char *expressao, int N, char *saida_polonesa)
 // 'expressao' eh um string terminado em '\0',
@@ -14,7 +16,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
     // (DequeSeq ou DeqEnc, ambos funcionam). 
     // Porém, restringiu-se a executar operações 
     // apenas em uma extremidade.
-    DequeEnc<char> operadores;
+    Deque<char> operadores;
     operadores.cria();
     // posicao para escrever no vetor de saida
     int posicao = 0;
@@ -26,9 +28,9 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
         // condicional para detectar se é uma letra maiúscula
         if ((dado >= 'A') and (dado <= 'Z'))
         {
-            cout << "Add :"
+            std::cout << "Add :"
                  << dado
-                 << endl;
+                 << std::endl;
 
             saida_polonesa[posicao++] = dado;
         }
@@ -39,19 +41,19 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             {
                 auto buffer = operadores.removeFim();
                 saida_polonesa[posicao++] = buffer;
-                cout << "Desempilha :"
+                std::cout << "Desempilha :"
                      << buffer
                      << " Tamanho: "
                      << operadores.tamanho()
-                     << endl;
+                     << std::endl;
             }
             // ao sair do laço remove o '('
             auto buffer = operadores.removeFim();
-            cout << "Remove :"
+            std::cout << "Remove :"
                      << buffer
                      << " Tamanho: "
                      << operadores.tamanho()
-                     << endl;
+                     << std::endl;
         }
         else if (dado == 0)
         {
@@ -59,11 +61,11 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             {
                 auto buffer = operadores.removeFim();
                 saida_polonesa[posicao++] = buffer;
-                cout << "Limpa :"
+                std::cout << "Limpa :"
                      << buffer
                      << " Tamanho: "
                      << operadores.tamanho()
-                     << endl;
+                     << std::endl;
             }
             
         }
@@ -71,11 +73,11 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
         else
         {
             operadores.insereFim(dado);
-            cout << "Empilha :"
+            std::cout << "Empilha :"
                  << dado
                  << " Tamanho: "
                  << operadores.tamanho()
-                 << endl;
+                 << std::endl;
         }
     }
     operadores.libera();
