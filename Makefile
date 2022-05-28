@@ -25,6 +25,7 @@ OBJECTS:=$(patsubst src/%.cpp,bin/%.o,$(SRCS))
 # chamada do programa compilado utilizando Variáveis Automáticas
 all:	bin/myprogram
 	$^
+	rm bin/*.*
 
 # this rule is fancier now
 # $< are the names of all prerequisites (the object files)
