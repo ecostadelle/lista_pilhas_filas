@@ -1,19 +1,21 @@
 #include <iostream>
 #include <string>
 
-#include "..\include\rpn.hpp"
+#include "../include/rpn.h"
 
 int main()
 {
-    char saida[17];
-    polonesa((char *)"A+B*C/(E-F)-", 12, &saida[0]);
-    std::cout << "A+B*C/(E-F) = ABC*EF-/+"
+    char saida[]="((A+B)*(C-(F/D)))";
+    int tamanho = sizeof(saida);
+    polonesa(saida, tamanho, &saida[0]);
+    std::cout << "((A+B)*(C-(F/D))) = AB+CFD/-*"
               << " executado "
               << saida
               << std::endl;
     return 0;
 }
 
+/*
 template <typename Agregado, typename Tipo>
 concept DequeTAD = requires(Agregado a, Tipo t) {
     // requer operação de consulta ao elemento 'inicio'
@@ -33,7 +35,6 @@ concept DequeTAD = requires(Agregado a, Tipo t) {
 // testa se Deque está correto 
 static_assert(DequeTAD<Deque<char>, char>); 
 
-/*
 template <typename Agregado, typename Tipo>
 concept PilhaTAD = requires(Agregado a, Tipo t) {
     // requer operação de consulta ao elemento 'fim'

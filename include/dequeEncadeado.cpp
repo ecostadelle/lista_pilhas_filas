@@ -1,100 +1,100 @@
 #include "dequeEncadeado.h"
 
-template <typename T>
-void Deque<T>::cria()          // Método 'construtor', não propriamente
+template <typename TipoGenerico>
+Deque<TipoGenerico>::Deque()          // Método 'construtor', não propriamente
 {                           // dito, porém, inicia as variáveis
-    this->N = 0;            // com zero elementos na fila,
+    this->numeroElementos = 0;            // com zero elementos na fila,
     this->inicio = nullptr; // endereço zero de memória para início e
     this->fim = nullptr;    // endereço zero de memória para fim.
 } // Esse método tem complexidade O(1).
 
-template <typename T>
-void Deque<T>::libera()    // Método para evitar o vazamento
+template <typename TipoGenerico>
+Deque<TipoGenerico>::~Deque()    // Método para evitar o vazamento
 {                       // de memória provocado pelas
-    while (this->N > 0) // inúmeras alocações dinâmicas.
+    while (this->numeroElementos > 0) // inúmeras alocações dinâmicas.
         removeInicio(); // limpa o deque a partir do início
 } // porém também poderia começar pelo fim.
   // Esse laço tem complexidade O(N).
 
-template <typename T>
-void Deque<T>::insereInicio(T v) // método para inserir elementos
+template <typename TipoGenerico>
+void Deque<TipoGenerico>::insereInicio(TipoGenerico v) // método para inserir elementos
 {
-    NoDeque<T> *no =   // alocação dinâmica de um novo nó
+    NoDeque<TipoGenerico> *no =   // alocação dinâmica de um novo nó
         new NoDeque // com inicialização das variáveis
         {.dado = v,
-         .prox = nullptr,
-         .ante = nullptr};
-    if (N == 0)            // caso seja o primiero nó do deque,
+         .noSeguinte = nullptr,
+         .noAnterior = nullptr};
+    if (numeroElementos == 0)            // caso seja o primiero nó do deque,
     {                      // os ponterios de inicio e fim
         inicio = fim = no; // apontarão para o mesmo nó.
     }
     else                   // caso já exista pelo menos um nó no
     {                      // deque, o ponteiro de 'próximo' do nó
-        no->prox = inicio; // inserido recebe o endereço daquele
-        inicio->ante = no; // que era o primeiro nó do deque.
+        no->noSeguinte = inicio; // inserido recebe o endereço daquele
+        inicio->noAnterior = no; // que era o primeiro nó do deque.
         inicio = no;       // Esse 'ex-primeiro nó', também recebe o
     }                      // endereço do nó inserido no campo
-    N++;                   // 'anterior' e o tamanho é incrementado.
+    numeroElementos++;                   // 'anterior' e o tamanho é incrementado.
 } // Esse método tem complexidade O(1).
 
-template <typename T>
-void Deque<T>::insereFim(T v) // A operação deste método é muito
+template <typename TipoGenerico>
+void Deque<TipoGenerico>::insereFim(TipoGenerico v) // A operação deste método é muito
 {                          // semelhante à anterior, difere apenas
-    NoDeque<T> *no =       // na extremidade em que é realizada.
-        new NoDeque<T>     // Esse método tem complexidade O(1).
+    NoDeque<TipoGenerico> *no =       // na extremidade em que é realizada.
+        new NoDeque<TipoGenerico>     // Esse método tem complexidade O(1).
         {.dado = v,
-         .prox = nullptr,
-         .ante = nullptr};
-    if (N == 0)
+         .noSeguinte = nullptr,
+         .noAnterior = nullptr};
+    if (numeroElementos == 0)
     {
         inicio = fim = no;
     }
     else
     {
-        no->ante = fim;
-        fim->prox = no;
+        no->noAnterior = fim;
+        fim->noSeguinte = no;
         fim = no;
     }
-    N++;
+    numeroElementos++;
 }
 
-template <typename T>
-int Deque<T>::tamanho() // método para obter o tamanho atual
+template <typename TipoGenerico>
+int Deque<TipoGenerico>::tamanho() // método para obter o tamanho atual
 {                    // Esse método tem complexidade O(1).
-    return this->N;
+    return this->numeroElementos;
 }
 
-template <typename T>
-T Deque<T>::buscaInicio()
+template <typename TipoGenerico>
+TipoGenerico Deque<TipoGenerico>::buscaInicio()
 {                        // método que retorna o primeiro elemento
     return inicio->dado; // retorno do método
 } // Esse método tem complexidade O(1).
 
-template <typename T>
-T Deque<T>::buscaFim()
+template <typename TipoGenerico>
+TipoGenerico Deque<TipoGenerico>::buscaFim()
 {                     // método que retorna o último elemento
     return fim->dado; // retorno do método
 } // Esse método tem complexidade O(1).
 
-template <typename T>
-T Deque<T>::removeInicio()
+template <typename TipoGenerico>
+TipoGenerico Deque<TipoGenerico>::removeInicio()
 {
-    NoDeque<T> *p = inicio; // Ponteiro temporário que indica o
-    inicio = inicio->prox;  // um novo início que é determinado avançando
-    T r = p->dado;       // para o 'próximo', o conteudo do antigo
+    NoDeque<TipoGenerico> *p = inicio; // Ponteiro temporário que indica o
+    inicio = inicio->noSeguinte;  // um novo início que é determinado avançando
+    TipoGenerico r = p->dado;       // para o 'próximo', o conteudo do antigo
     delete p;               // início é armazenado, porque a memória é
-    N--;                    // desalocada. O tamanho é decremntado e,
+    numeroElementos--;                    // desalocada. O tamanho é decremntado e,
     return r;               // diferente do deque da STL, o conteúdo
 } // é retornado.
   // Esse método tem complexidade O(1).
 
-template <typename T>
-T Deque<T>::removeFim()  // A operaçaão deste método é muito
+template <typename TipoGenerico>
+TipoGenerico Deque<TipoGenerico>::removeFim()  // A operaçaão deste método é muito
 {                        // semelhante à anterior, difere apenas
-    NoDeque<T> *p = fim; // na extremidade em que é realizada.
-    fim = fim->ante;     // Esse método tem complexidade O(1).
-    T r = p->dado;
+    NoDeque<TipoGenerico> *p = fim; // na extremidade em que é realizada.
+    fim = fim->noAnterior;     // Esse método tem complexidade O(1).
+    TipoGenerico r = p->dado;
     delete p;
-    N--;
+    numeroElementos--;
     return r;
 }

@@ -1,13 +1,20 @@
-#include "pilhaDeque.hpp"
+#include <iostream>
+#include "pilhaDeque.h"
 
 PilhaDeque::PilhaDeque()
 {
-    d.cria();
+    std::cout << "Construtor chamado" << std::endl;
 }
 
 PilhaDeque::~PilhaDeque()
 {
-    d.libera();
+    d.~Deque();
+    std::cout << "Destrutor chamado" << std::endl;
+}
+
+int PilhaDeque::tamanho()
+{
+    return d.tamanho();
 }
 
 char PilhaDeque::buscaFim()

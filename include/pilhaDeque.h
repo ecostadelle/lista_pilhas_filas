@@ -6,18 +6,16 @@
 class PilhaDeque
 {
 public:
-    // Deque para 'char' (veja exercício anterior) 
-    Deque d; 
-    // SOMENTE espaço auxiliar CONSTANTE aqui 
-    // (nenhum vetor, lista, etc) 
-    // implementar métodos do TAD Pilha 
+    Deque<char> d; 
 
     PilhaDeque();
     ~PilhaDeque();
+    int tamanho();
     char buscaFim();
     void insereFim(char t);
     char removeFim();
-
 }; 
+
+#include "pilhaDeque.cpp"
 
 #endif
