@@ -17,17 +17,17 @@ int PilhaDeque::tamanho()
     return d.tamanho();
 }
 
-char PilhaDeque::buscaFim()
+char PilhaDeque::top()
 {
     return d.buscaFim();
 }
 
-void PilhaDeque::insereFim(char t)
+void PilhaDeque::push(char t)
 {
     d.insereFim(t);
 }
 
-char PilhaDeque::removeFim()
+char PilhaDeque::pop()
 {
     return d.removeFim();
 }

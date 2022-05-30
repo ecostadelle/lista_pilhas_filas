@@ -11,9 +11,9 @@ public:
     PilhaDeque();
     ~PilhaDeque();
     int tamanho();
-    char buscaFim();
-    void insereFim(char t);
-    char removeFim();
+    char top();
+    void push(char t);
+    char pop();
 }; 
 
 #include "pilhaDeque.cpp"

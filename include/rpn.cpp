@@ -16,7 +16,7 @@ void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEs
 {
     std::cout << "Fecha Parentese"
               << std::endl;
-    while (operadores->buscaFim() not_eq '(')
+    while (operadores->top() not_eq '(')
     {
         desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
     }
@@ -35,7 +35,7 @@ void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 }
 void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
-    char dado = operadores->removeFim();
+    char dado = operadores->pop();
     if (dado not_eq '(')
     {
         saida_polonesa[*posicaoEscrita] = dado;
@@ -52,7 +52,7 @@ void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrit
 
 void empilha(PilhaDeque *operadores, char dado)
 {
-    operadores->insereFim(dado);
+    operadores->push(dado);
     std::cout << "Empilha: "
               << dado
               << " Tamanho: "
@@ -112,7 +112,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             }
             else
             {
-                while (verificaPrecedencia(operadores->buscaFim()) >= 2)
+                while (verificaPrecedencia(operadores->top()) >= 2)
                 {
                     desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
                 }
@@ -127,7 +127,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
             }
             else
             {
-                while (verificaPrecedencia(operadores->buscaFim()) >= 3)
+                while (verificaPrecedencia(operadores->top()) >= 3)
                 {
                     desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
                 }
