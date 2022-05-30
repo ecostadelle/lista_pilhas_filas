@@ -12,9 +12,9 @@ FilaDeque::~FilaDeque()
     std::cout << "Destrutor chamado" << std::endl;
 }
 
-int FilaDeque::tamanho()
+bool FilaDeque::empty()
 {
-    return d.tamanho();
+    return (d.tamanho() == 0);
 }
 
 char FilaDeque::front()

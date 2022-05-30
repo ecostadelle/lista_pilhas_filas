@@ -10,7 +10,7 @@ public:
 
     PilhaDeque();
     ~PilhaDeque();
-    int tamanho();
+    bool empty();
     char top();
     void push(char t);
     char pop();

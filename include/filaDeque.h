@@ -10,7 +10,7 @@ public:
 
     FilaDeque();
     ~FilaDeque();
-    int tamanho();
+    bool empty();
     char front();
     void push(char t);
     char pop();

@@ -12,9 +12,9 @@ PilhaDeque::~PilhaDeque()
     std::cout << "Destrutor chamado" << std::endl;
 }
 
-int PilhaDeque::tamanho()
+bool PilhaDeque::empty()
 {
-    return d.tamanho();
+    return (d.tamanho()==0);
 }
 
 char PilhaDeque::top()
