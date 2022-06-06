@@ -1,7 +1,7 @@
-#ifndef _PILHA_DEQUE
-#define _PILHA_DEQUE
+#ifndef _PILHA_DEQUE_HPP_
+#define _PILHA_DEQUE_HPP_
 
-#include "dequeEncadeado.h"
+#include "dequeEncadeado.hpp"
 
 class PilhaDeque
 {

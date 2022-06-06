@@ -1,20 +1,18 @@
 #include <iostream>
-#include "pilhaDeque.h"
+#include "pilhaDeque.hpp"
 
 PilhaDeque::PilhaDeque()
 {
-    std::cout << "Construtor chamado" << std::endl;
 }
 
 PilhaDeque::~PilhaDeque()
 {
     d.~Deque();
-    std::cout << "Destrutor chamado" << std::endl;
 }
 
 bool PilhaDeque::empty()
 {
-    return (d.tamanho()==0);
+    return (d.tamanho() == 0);
 }
 
 char PilhaDeque::top()
@@ -31,3 +29,16 @@ char PilhaDeque::pop()
 {
     return d.removeFim();
 }
+
+template <typename Agregado, typename Tipo>
+concept PilhaTAD = requires(Agregado c, Tipo t)
+{
+    // requer operação de consulta ao elemento 'fim'
+    {c.top()};
+    // requer operação 'insereFim' sobre tipo 't'
+    {c.push(t)};
+    // requer operação 'removeFim' e retorna tipo 't'
+    {c.pop()};
+};
+// testa se Pilha está correta
+static_assert(PilhaTAD<PilhaDeque, char>);

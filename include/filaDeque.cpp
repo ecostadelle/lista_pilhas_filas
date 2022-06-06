@@ -1,5 +1,5 @@
 #include <iostream>
-#include "FilaDeque.h"
+#include "filaDeque.hpp"
 
 FilaDeque::FilaDeque()
 {
@@ -31,3 +31,16 @@ char FilaDeque::pop()
 {
     return d.removeInicio();
 }
+
+template <typename Agregado, typename Tipo>
+concept FilaTAD = requires(Agregado c, Tipo t)
+{
+    // requer operação de consulta ao elemento 'inicio'
+    {c.front()};
+    // requer operação 'insereFim' sobre tipo 't'
+    {c.push(t)};
+    // requer operação 'removeInicio' e retorna tipo 't'
+    {c.pop()};
+};
+// testa se Fila está correta
+static_assert(FilaTAD<FilaDeque, char>);

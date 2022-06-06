@@ -1,7 +1,7 @@
-#ifndef _FILA_DEQUE
-#define _FILA_DEQUE
+#ifndef _FILA_DEQUE_HPP_
+#define _FILA_DEQUE_HPP_
 
-#include "dequeEncadeado.h"
+#include "dequeEncadeado.hpp"
 
 class FilaDeque
 {

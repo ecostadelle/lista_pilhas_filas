@@ -1,5 +1,5 @@
-#ifndef _DEQUE_SEQUENCIAL
-#define _DEQUE_SEQUENCIAL
+#ifndef _DEQUE_SEQUENCIAL_HPP_
+#define _DEQUE_SEQUENCIAL_HPP_
 
 const int MAXDEQUE = 100;
 

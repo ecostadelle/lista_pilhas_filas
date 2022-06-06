@@ -1,21 +1,14 @@
-#include "rpn.h"
-#include "pilhaDeque.h"
+#include "rpn.hpp"
+#include "pilhaDeque.hpp"
 
 void operando(char *saida_polonesa, int *posicaoEscrita, char dado)
 {
     saida_polonesa[*posicaoEscrita] = dado;
-    std::cout << "Operando: "
-              << saida_polonesa[*posicaoEscrita]
-              << " posicao escrita: "
-              << *posicaoEscrita
-              << std::endl;
     *posicaoEscrita = *posicaoEscrita + 1;
 }
 
 void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
-    std::cout << "Fecha Parentese"
-              << std::endl;
     while (operadores->top() not_eq '(')
     {
         desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
@@ -24,8 +17,6 @@ void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEs
 
 void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
-    std::cout << "Limpa"
-              << std::endl;
     while (!operadores->empty())
     {
         desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
@@ -39,11 +30,6 @@ void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrit
     if (dado not_eq '(')
     {
         saida_polonesa[*posicaoEscrita] = dado;
-        std::cout << "Desempilha: "
-                  << saida_polonesa[*posicaoEscrita]
-                  << " posicao escrita: "
-                  << *posicaoEscrita
-                  << std::endl;
         *posicaoEscrita = *posicaoEscrita + 1;
     }
 }
@@ -51,9 +37,6 @@ void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrit
 void empilha(PilhaDeque *operadores, char dado)
 {
     operadores->push(dado);
-    std::cout << "Empilha: "
-              << dado
-              << std::endl;
 }
 
 int verificaPrecedencia(char dado)
@@ -77,12 +60,6 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
 {
     PilhaDeque *operadores = new PilhaDeque;
     int posicaoEscrita = 0;
-
-    std::cout << "Expressao: "
-              << expressao
-              << " = ABC*EF-/+ tamanho:"
-              << sizeof(saida_polonesa)
-              << std::endl;
     int i = 0;
     while (expressao[i] not_eq '\0')
     {
@@ -133,7 +110,4 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
     }
     limpa(operadores, &saida_polonesa[0], &posicaoEscrita);
     delete operadores;
-    std::cout << "Polonesa: "
-              << saida_polonesa
-              << std::endl;
 }

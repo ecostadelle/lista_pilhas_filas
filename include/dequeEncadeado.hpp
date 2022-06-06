@@ -1,5 +1,5 @@
-#ifndef _DEQUE_SEQUENCIAL
-#define _DEQUE_SEQUENCIAL
+#ifndef _DEQUE_ENCADEADO_HPP_
+#define _DEQUE_ENCADEADO_HPP_
 
 /*
    Utilizei um tipo genérico <TipoGenerico> pelo fato de que código pode ser reaproveitado

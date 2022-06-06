@@ -1,10 +1,10 @@
-#ifndef _RPN_H
-#define _RPN_H
+#ifndef _RPN_HPP_
+#define _RPN_HPP_
 
-#include "pilhaDeque.h"
+#include "pilhaDeque.hpp"
 
-void operando(char *, int *, char);
 int verificaPrecedencia(char);
+void operando(char *, int *, char);
 void fechaParentese(PilhaDeque *, char *, int *);
 void limpa(PilhaDeque *, char *, int *);
 void polonesa(char *, int, char *);
