@@ -26,7 +26,7 @@ void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
     std::cout << "Limpa"
               << std::endl;
-    while (operadores->tamanho() not_eq 0)
+    while (!operadores->empty())
     {
         desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
     }
@@ -41,8 +41,6 @@ void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrit
         saida_polonesa[*posicaoEscrita] = dado;
         std::cout << "Desempilha: "
                   << saida_polonesa[*posicaoEscrita]
-                  << " Tamanho: "
-                  << operadores->tamanho()
                   << " posicao escrita: "
                   << *posicaoEscrita
                   << std::endl;
@@ -55,8 +53,6 @@ void empilha(PilhaDeque *operadores, char dado)
     operadores->push(dado);
     std::cout << "Empilha: "
               << dado
-              << " Tamanho: "
-              << operadores->tamanho()
               << std::endl;
 }
 
@@ -105,7 +101,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
         }
         if ((dado == '+') or (dado == '-'))
         {
-            if (operadores->tamanho() == 0)
+            if (operadores->empty())
             {
 
                 empilha(operadores, dado);
@@ -121,7 +117,7 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
         }
         if ((dado == '*') or (dado == '/'))
         {
-            if (operadores->tamanho() == 0)
+            if (operadores->empty())
             {
                 empilha(operadores, dado);
             }
