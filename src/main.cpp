@@ -2,7 +2,7 @@
 #include "../include/pilha2F.hpp"
 #include "../include/fila2P.hpp"
 #include "../include/rpn.hpp"
-#include "../include/inverte1F.hpp"
+#include "../include/inverte2P.hpp"
 
 int exercicio3()
 {
@@ -14,7 +14,6 @@ int exercicio3()
                   << std::endl;
         p.push(i);
     }
-    //inverte1F(p);
     while (!p.empty())
     {
         std::cout << "Removendo: "
@@ -33,7 +32,7 @@ int exercicio4()
     p.push('d');
     p.push('e');
     p.push('f');
-    //inverte1F(&p);
+    //inverte2P(&p);
     while (!p.empty())
     {
         std::cout << "Removendo: "
