@@ -44,7 +44,7 @@ char Pilha2F::pop()
     return t;
 }
 template <typename Agregado, typename Tipo>
-concept PilhaTAD = requires(Agregado a, Tipo t)
+concept PilhaTAD2F = requires(Agregado a, Tipo t)
 {
     {a.empty()};
     {a.top()};
@@ -52,4 +52,4 @@ concept PilhaTAD = requires(Agregado a, Tipo t)
     {a.pop()};
 };
 // testa se Pilha está correta
-static_assert(PilhaTAD<Pilha2F, char>);
+static_assert(PilhaTAD2F<Pilha2F, char>);
