@@ -1,7 +1,7 @@
 #include <queue>
-#include "inverte1F.hpp"
+#include "inverteP1F.hpp"
 
-void inverte1F(std::stack<char> *p)
+void inverteP1F(std::stack<char> *p)
 {
     std::queue<char> f;
     while (!p->empty())

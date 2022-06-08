@@ -1,6 +1,6 @@
-#include "inverte2P.hpp"
+#include "inverteP2P.hpp"
 
-void inverte2P(std::stack<char> *p)
+void inverteP2P(std::stack<char> *p)
 {
     std::stack<char> p1; // primeira pilha auxiliar
     std::stack<char> p2; // segunda pilha auxiliar

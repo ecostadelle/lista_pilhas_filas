@@ -1,6 +1,6 @@
-#include "inverte1P.hpp"
+#include "inverteP1P.hpp"
 
-void inverte1P(std::stack<char>* p) { 
+void inverteP1P(std::stack<char>* p) { 
     std::stack<char> p1; // uma pilha auxiliar 
     // mais espaço auxiliar constante 
 

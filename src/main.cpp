@@ -2,46 +2,28 @@
 #include "../include/pilha2F.hpp"
 #include "../include/fila2P.hpp"
 #include "../include/rpn.hpp"
-#include "../include/inverte1P.hpp"
+#include "../include/inverteF2F.hpp"
 
-int exercicio3()
+int exercicio5()
 {
-    Fila2P p;
-    for (int i = 0x41; i < 0x4B; i++)
-    {
-        std::cout << "Inserindo: "
-                  << (char)i
-                  << std::endl;
-        p.push(i);
-    }
-    while (!p.empty())
+    std::queue <char> f;
+    f.push('a');
+    f.push('b');
+    f.push('c');
+    f.push('d');
+    f.push('e');
+    f.push('f');
+    inverteF2F(&f);
+    while (!f.empty())
     {
         std::cout << "Removendo: "
-                  << p.pop()
+                  << f.front()
                   << std::endl;
+        f.pop();
     }
     return 0;
 }
-
-int exercicio4()
-{
-    std::stack <char> p;
-    p.push('a');
-    p.push('b');
-    p.push('c');
-    p.push('d');
-    p.push('e');
-    p.push('f');
-    inverte1P(&p);
-    while (!p.empty())
-    {
-        std::cout << "Removendo: "
-                  << p.top()
-                  << std::endl;
-        p.pop();
-    }
-    return 0;
-}
+/*
 int exercicio7()
 {
     char entrada[] = "(A+B)*(C-F/D)";
@@ -54,10 +36,11 @@ int exercicio7()
               << std::endl;
     return 0;
 }
-
+*/
 int main()
 {
-    exercicio4();
+    exercicio5();
     //exercicio7();
     //int x[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    return 0;
 }
