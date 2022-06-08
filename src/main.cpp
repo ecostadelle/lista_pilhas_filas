@@ -2,24 +2,24 @@
 #include "../include/pilha2F.hpp"
 #include "../include/fila2P.hpp"
 #include "../include/rpn.hpp"
-#include "../include/inverteF2F.hpp"
+#include "../include/obterMinimo.hpp"
 
-int exercicio5()
+int exercicio6()
 {
-    std::queue <char> f;
-    f.push('a');
-    f.push('b');
-    f.push('c');
-    f.push('d');
-    f.push('e');
-    f.push('f');
-    inverteF2F(&f);
-    while (!f.empty())
+    PilhaMin f;
+    f.empilha(6);
+    f.empilha(4);
+    f.empilha(5);
+    f.empilha(3);
+    f.empilha(1);
+    f.empilha(2);
+    while (f.vazio())
     {
-        std::cout << "Removendo: "
-                  << f.front()
+        std::cout << "Minimo: "
+                  << f.obterMinimo()
+                  << " Removendo: "
+                  << f.desempilha()
                   << std::endl;
-        f.pop();
     }
     return 0;
 }
@@ -39,8 +39,8 @@ int exercicio7()
 */
 int main()
 {
-    exercicio5();
-    //exercicio7();
-    //int x[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    exercicio6();
+    // exercicio7();
+    // int x[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     return 0;
 }

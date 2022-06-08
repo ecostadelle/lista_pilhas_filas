@@ -7,4 +7,4 @@ void inverteF2F(std::queue<char>* f);
 
 #include "inverteF2F.cpp"
 
-#endif
+#endif  
