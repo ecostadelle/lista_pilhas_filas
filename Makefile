@@ -22,6 +22,9 @@ HEADERS:=$(wildcard src/*.h)
 # this will contain the names of all intermediate object files
 OBJECTS:=$(patsubst src/%.cpp,bin/%.o,$(SRCS))
 
+# Arquivos markdown para compilar
+MARKDOWN:=$(wildcard *.md)
+
 # chamada do programa compilado utilizando Variáveis Automáticas
 all:	bin/myprogram
 	$^
@@ -38,3 +41,6 @@ bin/myprogram: $(OBJECTS)
 #  $< is the name of the first prerequisite (the cpp file in this case)
 bin/%.o: src/%.cpp $(HEADERS)
 	$(CC) $< $(CC_OPTS) -c -o $@
+
+pdf: 
+	pandoc Respostas.md -o Respostas.pdf --from markdown --template eisvogel --top-level-division=chapter -V classoption=oneside --listings

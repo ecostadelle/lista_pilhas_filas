@@ -1,8 +1,10 @@
 # Lista de Exercícios
 
-## Curso de Estruturas de Dados I (em C/C++) 
+## Curso de Estruturas de Dados e Algoritmos
 
-### Prof. Igor Machado Coelho - Tópico: Estruturas Lineares ####
+##### Programa de Pós-graduação em Ciência da Computação da Universidade Federal Fluminense
+
+##### Prof. Igor Machado Coelho - Tópico: Estruturas Lineares
 
 Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais na lógica do que em erros básicos de programação e SEMPRE discuta a proposta do algoritmo (não quero apenas código!). Sempre analise a complexidade assintótica dos métodos implementados.
 
@@ -38,13 +40,6 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
     // testa se Deque está correto 
     static_assert(DequeTAD<Deque, char>); 
     ```
-
-    > ### Resposta
-    > 
-    > A fim de responder essa questão implementei tanto o deque [sequencial](include/dequeSequencial.hpp) quanto o [encadeado](include/dequeEncadeado.hpp). Porém, me limitei a comentar apenas no deque [encadeado](include/dequeEncadeado.hpp) porque foi o que trouxe maior aprendizado. Antes de implementá-lo, a alocação dinâmica era bem nebulosa para mim.
-    >
-    > Preferi utilizar o tipo genérico, de modo que a implementação pudesse ser reaproveitada nos exercícios posteriores. 
-    > 
 
     b. Implemente uma estrutura PilhaDeque para tipo 'char', utilizando somente um Deque como armazenamento interno e mais espaço auxiliar constante:
 
@@ -98,7 +93,7 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
 
 ---
 
-3. Implemente uma estrutura que satisfaz o TAD Fila para o tipo 'char' e somente utiliza duas Pilhas comoarmazenamento interno (mais espaço constante): 
+3. Implemente uma estrutura que satisfaz o TAD Fila para o tipo 'char' e somente utiliza duas Pilhas como armazenamento interno (mais espaço constante): 
 
     ```cpp
     #include <stack> // Pilha genérica em C++ 
@@ -116,7 +111,7 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
 
 ---
 
-4. Escreva um algoritmo que dada uma pilha padrão P externa passada como parâmetro, inverte oconteúdode P. Somente utilize as estruturas extras permitidas como armazenamento externo(mais espaço constante)
+4. Escreva um algoritmo que dada uma pilha padrão P externa passada como parâmetro, inverte o conteúdo de P. Somente utilize as estruturas extras permitidas como armazenamento externo(mais espaço constante)
 
     a. Uma Fila 
 
@@ -171,7 +166,7 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
 
 ---
 
-6. Criar uma implementação do TAD Pilha para o tipo 'int', chamada PilhaMin, que oferece os métodos do TAD e também o método `obterMinimo()`, que retorna o menor elemento da pilha. O método `obterMinimo()` deve operar em tempo constante. 
+6. Criar uma implementação do TAD Pilha para o tipo ```int```, chamada PilhaMin, que oferece os métodos do TAD e também o método ```obterMinimo()```, que retorna o menor elemento da pilha. O método ```obterMinimo()``` deve operar em tempo constante. 
 
     ```cpp
     class PilhaMin { 
@@ -203,16 +198,3 @@ Observação: os exercícios devem ser feitos em C/C++ (ou similar!). Foque mais
         // escreva o resultado no string 'saida_polonesa' 
     }
     ```
-    > Para resolver este exercício, uma pilha armazenou os operadores e um vetor, a saída. 
-    >
-    > De modo que um laço percorre a entrada e armazena letras (variáveis) diretamente na saída e sinais (operações) na pilha até encontrar:
-    >   1. um parentese fechado; ou 
-    >   2. um operador de precedência inferior ao último encontrado. 
-    >
-    > Assim que uma das duas condições é satisfeita, duas coisas podem ocorrer, respectivamente: 
-    >   1. o último operador é desemplinhado, inserido no vetor de saída, e o um parentese aberto também é desempilhado;
-    >   2. o operador de maior precedência é desempilhado, inserido na saída e o novo operador é empilhado.
-    >
-    > Ao chegar ao final do laço, todos os operadores são desempilhados e inseridos na saída.
-    >
-    > Com o objetivo de determinar as precedências, utilizou-se o código ASCII do caracter subtraído de 41 em módulo 6. Esta tranformação faz com que o carcter '*' (decimal 42), torne-se 1; '+' (decimal 43), torne-se 2; '-' (decimal 45), torne-se 4; e, por fim, o caracter '/' (decimal 47), torne-se 0. 
