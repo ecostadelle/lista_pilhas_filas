@@ -27,8 +27,8 @@ MARKDOWN:=$(wildcard *.md)
 
 # chamada do programa compilado utilizando Variáveis Automáticas
 all:	bin/myprogram
-	$^
-	rm bin/*.*
+	$^ 
+#	rm bin/*.*
 
 # this rule is fancier now
 # $< are the names of all prerequisites (the object files)
@@ -43,4 +43,8 @@ bin/%.o: src/%.cpp $(HEADERS)
 	$(CC) $< $(CC_OPTS) -c -o $@
 
 pdf: 
-	pandoc Respostas.md -o Respostas.pdf --from markdown --template eisvogel --top-level-division=chapter -V classoption=oneside --listings
+	pandoc Respostas.md -o Respostas.pdf --from markdown --template eisvogel --top-level-division=chapter -s --highlight-style kate -V classoption=oneside --listings
+	start "" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "C:\github\edAtividade4\lista_pilhas_filas\Respostas.pdf"
+
+tex: 
+	pandoc Respostas.md -o Respostas.tex --from markdown --template eisvogel --top-level-division=chapter -V classoption=oneside --listings
