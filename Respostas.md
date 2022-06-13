@@ -273,7 +273,11 @@ char PilhaDeque::pop()
 {
     return d.removeFim();
 }
+```
 
+O ``static_assert`` verifica se o os métodos solicitados pelo ``concept`` foram satisfeitos.
+
+```cpp
 template <typename Agregado, typename Tipo>
 concept PilhaTAD = requires(Agregado c, Tipo t)
 {
@@ -351,7 +355,11 @@ char FilaDeque::pop()
 {
     return d.removeInicio();
 }
+```
 
+O ``static_assert`` verifica se o os métodos solicitados pelo ``concept`` foram satisfeitos.
+
+```cpp
 template <typename Agregado, typename Tipo>
 concept FilaTAD = requires(Agregado c, Tipo t)
 {
@@ -369,10 +377,11 @@ static_assert(FilaTAD<FilaDeque, char>);
 
 # Exercício 2
 
-## Implementar uma Pilha que utiliza duas Filas como armazenamento interno
+## Implementação uma Pilha utilizando duas Filas.
 
-No arquivo de cabeçalho [__pilha2F.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/pilha2F.cpp), foi declarada uma fila genérica do STL, para armazenar o tipo ``char`` e os protótipos da interface padrão do TAD. Seguindo o que vem sendo aplicado nos exercícios anteriores, utilizou-se métodos com nomes semelhantes aos disponíveis na STL.
+Para resolver esse exercício pensou-se na seguinte estratégia, manter a pilha na ordem de retirada na primeira fila e quando um novo elemento for inserido, move-se todos os elementos para a segunda fila, insere o elemento na primeira e retorna os elementos da segunda fila para a primeira. 
 
+Seguindo o padrão do projeto, os arquivos de cabeçalho e implementação foram colocados no subdiretório ``include``. No arquivo de cabeçalho [__pilha2F.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/pilha2F.cpp), foi declarada uma fila genérica do STL, para armazenar o tipo ``char`` e os protótipos da interface padrão do TAD. Seguindo o que vem sendo aplicado nos exercícios anteriores, utilizou-se métodos com nomes semelhantes aos disponíveis na STL.
 
 ```cpp
 #ifndef _PILHA_2F_HPP_
@@ -460,7 +469,7 @@ char Pilha2F::pop()
 }
 ```
 
-O método ``empty`` verifica se ambas filas estão vazias, apesar de, em tese, a ``f2`` permanecer vazia a maior parte do tempo. Opera em tempo constante, $O(1)$.
+O método ``empty`` verifica se ambas filas estão vazias. Em tese, ``f2`` é um espaço auxiliar e permanece vazia em todos os métodos, com exceção do ``push``. O método ``empty`` opera em tempo constante, $O(1)$.
 
 ```cpp
 bool Pilha2F::empty()
@@ -484,19 +493,239 @@ concept PilhaTAD2F = requires(Agregado a, Tipo t)
 static_assert(PilhaTAD2F<Pilha2F, char>);
 ```
 
-# Exercício 3 {ex3}
+# Exercício 3
+
+## Implementação de uma Fila utilizando duas Pilhas
+
+Para resolver esse exercício pensou-se na seguinte estratégia: os elementos são inseridos (``push``) em uma pilha, porém tanto na retirada (``pop``) quanto na consulta da fila (``front``) faz-se necessária a movimentação dos elementos da primeira pilha para a segunda. Ou seja, os elementos são inseridos em tempo constante ($O(1)$) e removidos ou consultados em tempo linearmente dependente do número de elementos ($O(n)$).
+
+Os arquivos de cabeçalho e implementação foram colocados no subdiretório ``include`` e, mais especicamente, no arquivo de cabeçalho [__pilha2F.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/pilha2F.cpp), foram declaradas duas pilhas genéricas do STL, para armazenar o tipo ``char`` e os protótipos da interface padrão do TAD.
+
+```cpp
+#ifndef _FILA_2P_HPP_
+#define _FILA_2P_HPP_
+
+#include <stack>
+
+class Fila2P
+{
+public:
+    std::stack<char> p1; // Pilha para 'char'
+    std::stack<char> p2; // Pilha para 'char'
+    Fila2P();
+    ~Fila2P();
+    void push(char c);
+    char pop();
+    char front();
+    bool empty();
+};
+
+#include "fila2P.cpp"
+
+#endif
+```
+
+No arquivo de implementação [__fila2P.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/fila2P.cpp), foram efetivados os métodos que permitiram a operação solicitada. Assim como nos exercícios anteriores o método destrutor percorre a fila e elimina os valores, a fim de evitar "vazamento de memória". 
+
+Já as implementações mais significativas estão nos métodos ``pop`` e ``front``, que movimentam os dados em tempo linearmente dependente do número de elementos (n), ou seja, em $O(n)$.
+
+```cpp
+char Fila2P::pop()
+{
+    while (!p1.empty())
+    {
+        p2.push(p1.top());
+        p1.pop();
+    }
+    char c = p2.top();
+    p2.pop();
+    while (!p2.empty())
+    {
+        p1.push(p2.top());
+        p2.pop();
+    }
+    return c;
+}
+
+char Fila2P::front()
+{
+    while (!p1.empty())
+    {
+        p2.push(p1.top());
+        p1.pop();
+    }
+    char c = p2.top();
+    while (!p1.empty())
+    {
+        p1.push(p2.top());
+    }
+    return c;
+}
+```
+
+O métodos ``push``, que opera em tempo constante ($O(1)$), apenas insere elementos no topo da ``p1``. 
+
+```cpp
+void Fila2P::push(char c)
+{
+    p1.push(c);
+}
+```
+
+O método ``empty`` apenas consulta se a fila está vazia, verificando se ambas pilhas estão vazias.
+
+```cpp
+bool Fila2P::empty()
+{
+    return p1.empty() && p2.empty();
+}
+```
+
+# Exercício 4
+
+## a) Inversão do conteúdo de uma Pilha utilizando uma Fila
+
+A inversão de uma fila utilizando uma pilha é uma operação um tanto óbvia, uma vez que operam em pontas distintas da estrutura. Bastando, para tanto, colocar os itens da pilha na fila e retornar da fila para a pilha.
+
+Seguindo o padrão do projeto, os arquivos de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.hpp) e de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) estão no subdiretório ``/include``. No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.hpp), além das diretivas, há apenas o protótipo da função.
+
+```cpp
+#ifndef _INVERTE_F1P_HPP_
+#define _INVERTE_F1P_HPP_
+
+#include <stack>
+#include <queue>
+
+void inverteF1P(std::queue<char>* f);
+
+#include "inverteF1P.cpp"	
+
+#endif
+```
+
+É no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) que o algoritmo é realizado. Nesse arquivo o método desempilha todos os elementos em uma fila e depois faz a operação inversa, o dobro do número de elementos (n) determina o número de operações necessárias à inversão. Deste modo, o método ``inverteP1F`` opera em tempo linearmente dependente do número de elemento (n), ou seja, $O(n)$. Não foram necessários mais espaço auxiliar, além da própria fila permitida pelo exercício
+
+```cpp
+void inverteF1P(std::queue<char>* f) { 
+    // somente essa pilha e mais espaço auxiliar constante
+    std::stack<char> p;
+
+    while (!f->empty()) {
+        p.push(f->front());
+        f->pop();
+    }
+    while (!p.empty()) {
+        f->push(p.top());
+        p.pop();
+    }
+}
+```
+
+## b) Inversão do conteúdo de uma Pilha utilizando duas Pilhas
+
+```cpp
+#ifndef _INVERTE_P2P_HPP_
+#define _INVERTE_P2P_HPP_
+
+#include <stack>
+
+void inverteP2P(std::stack<char>* p);
+
+#include "inverteP2P.cpp"
+
+#endif
+```
 
 
-# Exercício 4 {ex4}
+
+```cpp
+void inverteP2P(std::stack<char> *p)
+{
+    std::stack<char> p1; // primeira pilha auxiliar
+    std::stack<char> p2; // segunda pilha auxiliar
+    // mais espaço auxiliar constante
+
+    while (!p->empty())
+    {
+        p1.push(p->top());
+        p->pop();
+    }
+    while (!p1.empty())
+    {
+        p2.push(p1.top());
+        p1.pop();
+    }
+    while (!p2.empty())
+    {
+        p->push(p2.top());
+        p2.pop();
+    }
+}
+```
+
+## c) Inversão do conteúdo de uma Pilha utilizando uma Pilha
+
+![Esquema de inversão](inverteP1P.png)
+
+```cpp
+#ifndef _INVERTE_P1P_HPP_
+#define _INVERTE_P1P_HPP_
+
+#include <stack>
+
+void inverteP1P(std::stack<char>* p);
+
+#include "inverteP1P.cpp"
+
+#endif
+```
+
+No método ``inverteP1P`` ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n}{2}$. O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n}{2}$ vezes. Toda a operação de inversão ocorre $n(n-1)$ vezes, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+```cpp
+void inverteP1P(std::stack<char>* p) { 
+    std::stack<char> p1; // uma pilha auxiliar 
+    // mais espaço auxiliar constante 
+
+    int n = p->size();
+    char espacoAuxiliar;
+
+    while(--n > 0) {
+        espacoAuxiliar = p->top();
+        p->pop();
+        for (int i = 0; i < n; i++) {
+            p1.push(p->top());
+            p->pop();
+        }
+        p->push(espacoAuxiliar);
+        while (!p1.empty()) {
+            p->push(p1.top());
+            p1.pop();
+        }
+    } 
+} 
+```
 
 
-# Exercício 5 {ex5}
+
+# Exercício 5
+
+## a) Inversão do conteúdo de uma Fila utilizando uma Pilha
 
 
-# Exercício 6 {ex6}
+
+## b) Inversão do conteúdo de uma Fila utilizando duas Filas
 
 
-# Exercício 7 {ex7}
+
+# Exercício 6
+
+## Retornar o menor elemento de pilha em tempo constante
+
+
+
+# Exercício 7
+
+## Converter expressão aritmética em RPN
 
 Para resolver este exercício, uma pilha armazenou os operadores e um vetor, a saída. 
 
@@ -522,5 +751,6 @@ toc: true
 toc-own-page: true
 lang: "pt-br"
 book: true
+listings-no-page-break: true
 ...
 
