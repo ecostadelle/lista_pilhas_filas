@@ -1,50 +1,47 @@
 #include "dequeEncadeado.hpp"
 
 template <typename TipoGenerico>
-Deque<TipoGenerico>::Deque() // Método construtor, inicia as variáveis
+Deque<TipoGenerico>::Deque()
 {
-    this->numeroElementos = 0; // com zero elementos na fila,
-    this->inicio = nullptr;    // endereço zero de memória para início e
-    this->fim = nullptr;       // endereço zero de memória para fim.
-} // Esse método tem complexidade O(1).
+    this->numeroElementos = 0;
+    this->inicio = nullptr;
+    this->fim = nullptr;
+}
 
 template <typename TipoGenerico>
-Deque<TipoGenerico>::~Deque()         // Método para evitar o vazamento
-{                                     // de memória provocado pelas
-    while (this->numeroElementos > 0) // inúmeras alocações dinâmicas.
-        removeInicio();               // limpa o deque a partir do início
-} // porém também poderia começar pelo fim.
-  // Esse laço tem complexidade O(N).
+Deque<TipoGenerico>::~Deque()
+{
+    while (this->numeroElementos > 0)
+        removeInicio();
+}
 
 template <typename TipoGenerico>
-void Deque<TipoGenerico>::insereInicio(TipoGenerico v) // método para inserir elementos
+void Deque<TipoGenerico>::insereInicio(TipoGenerico v)
 {
-    NoDeque<TipoGenerico> *no = // alocação dinâmica de um novo nó
-        new NoDeque             // com inicialização das variáveis
-        {.dado = v,
-         .noSeguinte = nullptr,
-         .noAnterior = nullptr};
-    if (numeroElementos == 0) // caso seja o primiero nó do deque,
-    {                         // os ponterios de inicio e fim
-        inicio = fim = no;    // apontarão para o mesmo nó.
+    NoDeque<TipoGenerico> *no = /
+                                new NoDeque{.dado = v,
+                                            .noSeguinte = nullptr,
+                                            .noAnterior = nullptr};
+    if (numeroElementos == 0)
+    {
+        inicio = fim = no;
     }
-    else                         // caso já exista pelo menos um nó no
-    {                            // deque, o ponteiro de 'próximo' do nó
-        no->noSeguinte = inicio; // inserido recebe o endereço daquele
-        inicio->noAnterior = no; // que era o primeiro nó do deque.
-        inicio = no;             // Esse 'ex-primeiro nó', também recebe o
-    }                            // endereço do nó inserido no campo
-    numeroElementos++;           // 'anterior' e o tamanho é incrementado.
-} // Esse método tem complexidade O(1).
+    else
+    {
+        no->noSeguinte = inicio;
+        inicio->noAnterior = no;
+        inicio = no;
+    }
+    numeroElementos++;
+}
 
 template <typename TipoGenerico>
-void Deque<TipoGenerico>::insereFim(TipoGenerico v) // A operação deste método é muito
-{                                                   // semelhante à anterior, difere apenas
-    NoDeque<TipoGenerico> *no =                     // na extremidade em que é realizada.
-        new NoDeque<TipoGenerico>                   // Esse método tem complexidade O(1).
-        {.dado = v,
-         .noSeguinte = nullptr,
-         .noAnterior = nullptr};
+void Deque<TipoGenerico>::insereFim(TipoGenerico v)
+{
+    NoDeque<TipoGenerico> *no =
+        new NoDeque<TipoGenerico>{.dado = v,
+                                  .noSeguinte = nullptr,
+                                  .noAnterior = nullptr};
     if (numeroElementos == 0)
     {
         inicio = fim = no;
@@ -59,43 +56,42 @@ void Deque<TipoGenerico>::insereFim(TipoGenerico v) // A operação deste métod
 }
 
 template <typename TipoGenerico>
-int Deque<TipoGenerico>::tamanho() // método para obter o tamanho atual
-{                                  // Esse método tem complexidade O(1).
+int Deque<TipoGenerico>::tamanho()
+{
     return this->numeroElementos;
 }
 
 template <typename TipoGenerico>
 TipoGenerico Deque<TipoGenerico>::buscaInicio()
-{                        // método que retorna o primeiro elemento
-    return inicio->dado; // retorno do método
-} // Esse método tem complexidade O(1).
+{
+    return inicio->dado;
+}
 
 template <typename TipoGenerico>
 TipoGenerico Deque<TipoGenerico>::buscaFim()
-{                     // método que retorna o último elemento
-    return fim->dado; // retorno do método
-} // Esse método tem complexidade O(1).
+{
+    return fim->dado;
+}
 
 template <typename TipoGenerico>
 TipoGenerico Deque<TipoGenerico>::removeInicio()
 {
-    NoDeque<TipoGenerico> *p = inicio; // Ponteiro temporário que indica o
-    inicio = inicio->noSeguinte;       // um novo início que é determinado avançando
-    TipoGenerico r = p->dado;          // para o 'próximo', o conteudo do antigo
-    delete p;                          // início é armazenado, porque a memória é
-    numeroElementos--;                 // desalocada. O tamanho é decremntado e,
-    return r;                          // diferente do deque da STL, o conteúdo
-} // é retornado.
-  // Esse método tem complexidade O(1).
-
-template <typename TipoGenerico>
-TipoGenerico Deque<TipoGenerico>::removeFim() // A operaçaão deste método é muito
-{                                             // semelhante à anterior, difere apenas
-    NoDeque<TipoGenerico> *p = fim;           // na extremidade em que é realizada.
-    fim = fim->noAnterior;                    // Esse método tem complexidade O(1).
+    NoDeque<TipoGenerico> *p = inicio;
     TipoGenerico r = p->dado;
     delete p;
     numeroElementos--;
+    inicio = inicio->noSeguinte;
+    return r;
+}
+
+template <typename TipoGenerico>
+TipoGenerico Deque<TipoGenerico>::removeFim()
+{
+    NoDeque<TipoGenerico> *p = fim;
+    TipoGenerico r = p->dado;
+    delete p;
+    numeroElementos--;
+    fim = fim->noAnterior;
     return r;
 }
 

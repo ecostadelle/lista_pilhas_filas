@@ -1,16 +1,3 @@
----
-title: "Lista de Exercícios 4 (Pilhas e Filas)"
-author: [Ewerton Luiz Costadelle]
-date: "08/06/2022"
-keywords: [Pilha Fila Deque RPN]
-toc: true 
-toc-own-page: true
-lang: "pt-br"
-book: true
-...
-
-
-
 # Introdução
 
 Esta lista de exercícios foi proposta pelo Prof. Dr. Igor Machado Coelho, como atividade continuada do tópico Estruturas Lineares na disciplina de Estrutura de Dados e Algoritmos, do Programa de Pós-graduação em Ciência da Computação (PGC) da Universidade Federal Fluminense (UFF), Campus Niterói.
@@ -80,7 +67,7 @@ public:
 };
 ```
 
-Os métodos tiveram seu próprio arquivo de [__implementação (dequeEncadeado.cpp)__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/dequeEncadeado.cpp). Além dos métodos solicitados através do ```staticassert```, foram implementados um construtor ```Deque()```, que inicia as variáveis em tempo constante $O(1)$, e um destrutor ```~Deque()```, que ao se invocado, percorre todos os elementos do deque, liberando a memória e evitando "vazamento de memória". A complexidade do método destrutor é linearmente depende do tamanho armazenado em ```numeroElementos``` (n), ou seja, $O(n)$ 
+Os métodos tiveram seu próprio arquivo de [__implementação (dequeEncadeado.cpp)__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/dequeEncadeado.cpp). Além dos métodos solicitados através do ```concept```, foram implementados um construtor ```Deque()```, que inicia as variáveis em tempo constante $O(1)$, e um destrutor ```~Deque()```, que ao se invocado, percorre todos os elementos do deque, liberando a memória e evita o "vazamento de memória". A complexidade do método destrutor é linearmente depende do tamanho armazenado em ```numeroElementos``` (n), ou seja, $O(n)$ 
 
 ```cpp
 #include "dequeEncadeado.hpp"
@@ -124,9 +111,11 @@ void Deque<TipoGenerico>::insereInicio(TipoGenerico v)
     }
     numeroElementos++;
 }
+```
 
+No método ```insereFim``` ocorre um procedimento semelhante ao descrito atenteriormente, porém na outra ponta. E opera, também, em tempo constante, ou seja, $O(1)$.
 
-
+```cpp
 template <typename TipoGenerico>
 void Deque<TipoGenerico>::insereFim(TipoGenerico v)
 {
@@ -147,7 +136,11 @@ void Deque<TipoGenerico>::insereFim(TipoGenerico v)
     }
     numeroElementos++;
 }
+```
 
+Já os métodos ```tamanho```, ```buscaInicio``` e ```buscaFim``` apenas retornam variáveis que estão privadas, é um modo seguro de se criar uma interface. Operam em tempo constante ($O(1)$).
+
+```cpp
 template <typename TipoGenerico>
 int Deque<TipoGenerico>::tamanho()
 {
@@ -165,15 +158,19 @@ TipoGenerico Deque<TipoGenerico>::buscaFim()
 { 
     return fim->dado;
 }
+```
 
+Os métodos ```removeInicio``` e ```removeFim``` operam em tempo constante ($O(1)$) e quando um deles é invocado, ele armazena o endereço do nó que será removido, coleta o dado armazenado, remove o nó, decrementa o número de elementos, define a nova ponta da fila (seja no início, seja no fim) e retorna o valor lido.
+
+```cpp
 template <typename TipoGenerico>
 TipoGenerico Deque<TipoGenerico>::removeInicio()
 {
     NoDeque<TipoGenerico> *p = inicio;
-    inicio = inicio->noSeguinte;
     TipoGenerico r = p->dado;
     delete p;
     numeroElementos--;
+    inicio = inicio->noSeguinte;
     return r;
 }
 
@@ -181,13 +178,17 @@ template <typename TipoGenerico>
 TipoGenerico Deque<TipoGenerico>::removeFim() 
 {                                             
     NoDeque<TipoGenerico> *p = fim;           
-    fim = fim->noAnterior;              
     TipoGenerico r = p->dado;
     delete p;
     numeroElementos--;
+    fim = fim->noAnterior;              
     return r;
 }
+```
 
+Conforme solicitado, o ```static_assert``` verifica os métodos do ```concept```, algumas pequenas alterações foram feitas: a palavra ```bool``` foi removida porque os código foi implementado em C++20, uma vez que o IntelliSense reclamou dos métodos em questão enquanto era utilizado o C++17; a segunda alteração foi o acréscimo da palavra "busca" nos métodos que realizavam essa ação, com o objetivo de melhorar a legibilidade do código. Abaixo estão os códigos do ```concept``` e do ```static_assert```
+
+```cpp
 template <typename Agregado, typename Tipo>
 concept DequeTAD = requires(Agregado a, Tipo t)
 {
@@ -208,9 +209,8 @@ concept DequeTAD = requires(Agregado a, Tipo t)
 static_assert(DequeTAD<Deque<char>, char>);
 ```
 
-
-
 # Exercício 2 {ex2}
+
 
 
 # Exercício 3 {ex3}
@@ -240,3 +240,16 @@ Assim que uma das duas condições é satisfeita, duas coisas podem ocorrer, res
 Ao chegar ao final do laço, todos os operadores são desempilhados e inseridos na saída.
 
 Com o objetivo de determinar as precedências, utilizou-se o código ASCII do caractere subtraído de 41 em módulo 6. Esta transformação faz com que o caractere '*' (decimal 42), torne-se 1; '+' (decimal 43), torne-se 2; '-' (decimal 45), torne-se 4; e, por fim, o caractere '/' (decimal 47), torne-se 0. 
+
+
+---
+title: "Lista de Exercícios 4 (Pilhas e Filas)"
+author: [Ewerton Luiz Costadelle]
+date: "13/06/2022"
+keywords: [Pilha Fila Deque RPN]
+toc: true 
+toc-own-page: true
+lang: "pt-br"
+book: true
+...
+
