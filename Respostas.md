@@ -623,6 +623,10 @@ void inverteF1P(std::queue<char>* f) {
 
 ## b) Inversão do conteúdo de uma Pilha utilizando duas Pilhas
 
+Pela própria estrutura da pilha, já há uma inversão ao desempilhá-la em outra. Nesse sentido, basta executar o procedimento de desempilhar da pilha de entrada (``p``) para a primeira pilha auxiliar (``p1``), de ``p1`` para a segunda pilha auxiliar (``p2``) e de ``p2`` para ``p``.
+
+No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP2P.hpp) foi declarado apenas o protótipo da função (``inverteP2P``).  
+
 ```cpp
 #ifndef _INVERTE_P2P_HPP_
 #define _INVERTE_P2P_HPP_
@@ -636,7 +640,7 @@ void inverteP2P(std::stack<char>* p);
 #endif
 ```
 
-
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP2P.cpp) é que está o método ``inverteP2P``, onde ocorrem três laços, um após o outro, em que todos os elementos são obtidos, inseridos na outra pilha e removidos. O laço acontece até que a pilha de origem esteja vazia. Deste modo, as operações são linearmente dependendente do número de elementos ($n$) na pilha de entrada, ou seja, $O(n)$.
 
 ```cpp
 void inverteP2P(std::stack<char> *p)
@@ -665,7 +669,11 @@ void inverteP2P(std::stack<char> *p)
 
 ## c) Inversão do conteúdo de uma Pilha utilizando uma Pilha
 
-![Esquema de inversão](inverteP1P.png)
+A inversão de uma pilha, utilizando outra pilha e um espaço auxiliar constante, necessitou de muitas iterações. Pensou-se em remover o topo da pilha inicial (``p``) e depois toda o restante da pilha fosse colocado na pilha auxiliar (``p1``). Após isso, o valor que estava no topo é inserido primeiro em ``p``, de modo que o conteúdo do topo vá para a base, em seguida todos os elementos voltam para ``p``. Essa operação repetida sucessivas vezes, como demostrado na *Figura 1*, é capaz de inverter a pilha com um custo de muitas operações de movimentação de dados.
+
+![Esquema de inversão de uma pilha utilizando outra](inverteP1P.png){#Fig:inverteP1P}
+
+No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.hpp) foi declarado apenas o protótipo da função. 
 
 ```cpp
 #ifndef _INVERTE_P1P_HPP_
@@ -680,29 +688,29 @@ void inverteP1P(std::stack<char>* p);
 #endif
 ```
 
-No método ``inverteP1P`` ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n}{2}$. O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n}{2}$ vezes. Toda a operação de inversão ocorre $n(n-1)$ vezes, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.cpp) é que está o método ``inverteP1P``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n-2}{2}$ vezes, devido a remoção do topo antes da entrada. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-2}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2-2n+2)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
 ```cpp
 void inverteP1P(std::stack<char>* p) { 
     std::stack<char> p1; // uma pilha auxiliar 
     // mais espaço auxiliar constante 
 
-    int n = p->size();
-    char espacoAuxiliar;
+    int n = p->size();               // +1 
+    char espacoAuxiliar;             // +1
 
-    while(--n > 0) {
-        espacoAuxiliar = p->top();
-        p->pop();
-        for (int i = 0; i < n; i++) {
-            p1.push(p->top());
-            p->pop();
+    while(--n > 0) {                 // n-1 vezes -> (n-1)(n-1+3+n-2) 
+        espacoAuxiliar = p->top();       // +1
+        p->pop();                        // +1
+        for (int i = 0; i < n; i++){     // (n-1)/2 vezes -> (n-1)
+            p1.push(p->top());               // +1
+            p->pop();                        // +1
         }
-        p->push(espacoAuxiliar);
-        while (!p1.empty()) {
-            p->push(p1.top());
-            p1.pop();
+        p->push(espacoAuxiliar);         // +1
+        while (!p1.empty()) {            // (n-2)/2 vezes -> (n-2)
+            p->push(p1.top());               // +1
+            p1.pop();                        // +1
         }
-    } 
-} 
+    }
+}                                // O(2n^2-2n+2) = O(n^2)
 ```
 
 
@@ -711,9 +719,46 @@ void inverteP1P(std::stack<char>* p) {
 
 ## a) Inversão do conteúdo de uma Fila utilizando uma Pilha
 
+Pela própria estrutura da pilha, o o último elemento a ser inserido será o primeiro elemento a ser removido. Bastando, para tanto, desenfileirar os elementos da fila de entrada (``f``) e empilhá-los na pilha auxiliar (``p``).
 
+No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.hpp) foi declarado apenas o protótipo da função (``inverteF1P``). 
+
+```cpp
+#ifndef _INVERTE_F1P_HPP_
+#define _INVERTE_F1P_HPP_
+
+#include <stack>
+#include <queue>
+
+void inverteF1P(std::queue<char>* f);
+
+#include "inverteF1P.cpp"	
+
+#endif
+```
+
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) é que está o método ``inverteF1P``, onde ocorrem dois laços, um após o outro, em que todos os elementos são obtidos, inseridos na  pilha e devolvidos para a fila. 
+
+```cpp
+void inverteF1P(std::queue<char>* f) { 
+    // somente essa pilha e mais espaço auxiliar constante
+    std::stack<char> p;
+
+    while (!f->empty()) {
+        p.push(f->front());
+        f->pop();
+    }
+    while (!p.empty()) {
+        f->push(p.top());
+        p.pop();
+    }
+}
+```
 
 ## b) Inversão do conteúdo de uma Fila utilizando duas Filas
+
+
+![Esquema de inversão de uma fila utilizando outras duas filas](inverteF2F.png){#Fig:inverteF2F}
 
 
 
