@@ -90,7 +90,7 @@ Deque<TipoGenerico>::~Deque()
 } 
 ```
 
-No método ``insereInicio`` um nó é criado e alocado dinamicamente na memória, um ponteiro (``*no``) armazena o endereço e um dado é inserido. Caso o deque esteja vazio, os endereços de início e fim serão os mesmo do nó recém criado. Caso contrário, o campo ``noSeguinte`` do nó recém criado recebe o endereço daquele que era o início, e o campo ``noAnterior``, daquele que era o inicio, recebe o endereço do novo nó e o número de elementos no deque é incrementado. Este método opera em tempo constante, ou seja, $O(1)$.
+No método ``insereInicio()`` um nó é criado e alocado dinamicamente na memória, um ponteiro (``*no``) armazena o endereço e um dado é inserido. Caso o deque esteja vazio, os endereços de início e fim serão os mesmo do nó recém criado. Caso contrário, o campo ``noSeguinte`` do nó recém criado recebe o endereço daquele que era o início, e o campo ``noAnterior``, daquele que era o inicio, recebe o endereço do novo nó e o número de elementos no deque é incrementado. Este método opera em tempo constante, ou seja, $O(1)$.
 
 ```cpp
 template <typename TipoGenerico>
@@ -115,7 +115,7 @@ void Deque<TipoGenerico>::insereInicio(TipoGenerico v)
 }
 ```
 
-No método ``insereFim`` ocorre um procedimento semelhante ao descrito anteriormente, porém na outra ponta. E opera, também, em tempo constante, ou seja, $O(1)$.
+No método ``insereFim()`` ocorre um procedimento semelhante ao descrito anteriormente, porém na outra ponta. E opera, também, em tempo constante, ou seja, $O(1)$.
 
 ```cpp
 template <typename TipoGenerico>
@@ -140,7 +140,7 @@ void Deque<TipoGenerico>::insereFim(TipoGenerico v)
 }
 ```
 
-Já os métodos ``tamanho``, ``buscaInicio`` e ``buscaFim`` apenas retornam variáveis que estão privadas, é um modo seguro de se criar uma interface. Operam em tempo constante ($O(1)$).
+Já os métodos ``tamanho()``, ``buscaInicio()`` e ``buscaFim()`` apenas retornam variáveis que estão privadas, é um modo seguro de se criar uma interface. Operam em tempo constante ($O(1)$).
 
 ```cpp
 template <typename TipoGenerico>
@@ -162,7 +162,7 @@ TipoGenerico Deque<TipoGenerico>::buscaFim()
 }
 ```
 
-Os métodos ``removeInicio`` e ``removeFim`` operam em tempo constante ($O(1)$) e quando um deles é invocado, ele armazena o endereço do nó que será removido, coleta o dado armazenado, remove o nó, decrementa o número de elementos, define a nova ponta da fila (seja no início, seja no fim) e retorna o valor lido.
+Os métodos ``removeInicio()`` e ``removeFim()`` operam em tempo constante ($O(1)$) e quando um deles é invocado, ele armazena o endereço do nó que será removido, coleta o dado armazenado, remove o nó, decrementa o número de elementos, define a nova ponta da fila (seja no início, seja no fim) e retorna o valor lido.
 
 ```cpp
 template <typename TipoGenerico>
@@ -432,7 +432,7 @@ Pilha2F::~Pilha2F()
 }
 ```
 
-O método ``push`` é o mais importante desta implementação, é nele que é executado a o algoritmo que permitiu a operação solicitada. Quando o usuário solicita um ``push``, todos os elementos da primeira fila (``f1``) são removidos para a segunda (``f2``), o elemento é inserido na ``f1`` e todos os elementos da ``f2`` retornam para a ``f1``. Deste modo, a cada nova inserção são necessárias operações em dobro se comparado com o número de elementos (n), mesmo sendo $O(2n)$, assintoticamente opera em tempo $O(n)$.
+O método ``push()`` é o mais importante desta implementação, é nele que é executado a o algoritmo que permitiu a operação solicitada. Quando o usuário solicita um ``push``, todos os elementos da primeira fila (``f1``) são removidos para a segunda (``f2``), o elemento é inserido na ``f1`` e todos os elementos da ``f2`` retornam para a ``f1``. Deste modo, a cada nova inserção são necessárias operações em dobro se comparado com o número de elementos (n), mesmo sendo $O(2n)$, assintoticamente opera em tempo $O(n)$.
 
 ```cpp
 void Pilha2F::push(char t)
@@ -453,7 +453,7 @@ void Pilha2F::push(char t)
 }
 ```
 
-Manter o último elemento inserido na pilha na primeira posição da ``f1``, favorece os métodos ``top`` e ``pop`` que operarão sempre no elemento que está na frente da ``f1``. Operando sempre em tempo constante, $O(1)$.
+Manter o último elemento inserido na pilha na primeira posição da ``f1``, favorece os métodos ``top()`` e ``pop()`` que operarão sempre no elemento que está na frente da ``f1``. Operando sempre em tempo constante, $O(1)$.
 
 ```cpp
 char Pilha2F::top()
@@ -469,7 +469,7 @@ char Pilha2F::pop()
 }
 ```
 
-O método ``empty`` verifica se ambas filas estão vazias. Em tese, ``f2`` é um espaço auxiliar e permanece vazia em todos os métodos, com exceção do ``push``. O método ``empty`` opera em tempo constante, $O(1)$.
+O método ``empty()`` verifica se ambas filas estão vazias. Em tese, ``f2`` é um espaço auxiliar e permanece vazia em todos os métodos, com exceção do ``push``. O método ``empty()`` opera em tempo constante, $O(1)$.
 
 ```cpp
 bool Pilha2F::empty()
@@ -527,7 +527,7 @@ public:
 
 No arquivo de implementação [__fila2P.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/fila2P.cpp), foram efetivados os métodos que permitiram a operação solicitada. Assim como nos exercícios anteriores o método destrutor percorre a fila e elimina os valores, a fim de evitar "vazamento de memória". 
 
-Já as implementações mais significativas estão nos métodos ``pop`` e ``front``, que movimentam os dados em tempo linearmente dependente do número de elementos (n), ou seja, em $O(n)$.
+Já as implementações mais significativas estão nos métodos ``pop()`` e ``front()``, que movimentam os dados em tempo linearmente dependente do número de elementos (n), ou seja, em $O(n)$.
 
 ```cpp
 char Fila2P::pop()
@@ -563,7 +563,7 @@ char Fila2P::front()
 }
 ```
 
-O métodos ``push``, que opera em tempo constante ($O(1)$), apenas insere elementos no topo da ``p1``. 
+O método ``push()``, que opera em tempo constante ($O(1)$), apenas insere elementos no topo da ``p1``. 
 
 ```cpp
 void Fila2P::push(char c)
@@ -572,7 +572,7 @@ void Fila2P::push(char c)
 }
 ```
 
-O método ``empty`` apenas consulta se a fila está vazia, verificando se ambas pilhas estão vazias.
+O método ``empty()`` apenas consulta se a fila está vazia, verificando se ambas pilhas estão vazias.
 
 ```cpp
 bool Fila2P::empty()
@@ -603,7 +603,7 @@ void inverteF1P(std::queue<char>* f);
 #endif
 ```
 
-É no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) que o algoritmo é realizado. Nesse arquivo o método desempilha todos os elementos em uma fila e depois faz a operação inversa, o dobro do número de elementos (n) determina o número de operações necessárias à inversão. Deste modo, o método ``inverteP1F`` opera em tempo linearmente dependente do número de elemento (n), ou seja, $O(n)$. Não foram necessários mais espaço auxiliar, além da própria fila permitida pelo exercício
+É no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) que o algoritmo é realizado. Nesse arquivo o método desempilha todos os elementos em uma fila e depois faz a operação inversa, o dobro do número de elementos (n) determina o número de operações necessárias à inversão. Deste modo, o método ``inverteP1F()`` opera em tempo linearmente dependente do número de elemento (n), ou seja, $O(n)$. Não foram necessários mais espaço auxiliar, além da própria fila permitida pelo exercício
 
 ```cpp
 void inverteF1P(std::queue<char>* f) { 
@@ -640,7 +640,7 @@ void inverteP2P(std::stack<char>* p);
 #endif
 ```
 
-Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP2P.cpp) é que está o método ``inverteP2P``, onde ocorrem três laços, um após o outro, em que todos os elementos são obtidos, inseridos na outra pilha e removidos. O laço acontece até que a pilha de origem esteja vazia. Deste modo, as operações são linearmente dependendente do número de elementos ($n$) na pilha de entrada, ou seja, $O(n)$.
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP2P.cpp) é que está o método ``inverteP2P()``, onde ocorrem três laços, um após o outro, em que todos os elementos são obtidos, inseridos na outra pilha e removidos. O laço acontece até que a pilha de origem esteja vazia. Deste modo, as operações são linearmente dependendente do número de elementos ($n$) na pilha de entrada, ou seja, $O(n)$.
 
 ```cpp
 void inverteP2P(std::stack<char> *p)
@@ -688,7 +688,7 @@ void inverteP1P(std::stack<char>* p);
 #endif
 ```
 
-Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.cpp) é que está o método ``inverteP1P``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n-2}{2}$ vezes, devido a remoção do topo antes da entrada. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-2}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2-2n+2)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.cpp) é que está o método ``inverteP1P()``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n-2}{2}$ vezes, devido a remoção do topo antes da entrada. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-2}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2-2n+2)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
 
 ```cpp
 void inverteP1P(std::stack<char>* p) { 
@@ -738,7 +738,7 @@ void inverteF1P(std::queue<char>* f);
 #endif
 ```
 
-Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) é que está o método ``inverteF1P``, onde ocorrem dois laços, um após o outro, em que todos os elementos são obtidos, inseridos na  pilha e devolvidos para a fila. 
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) é que está o método ``inverteF1P()``, onde ocorrem dois laços, um após o outro, em que todos os elementos são obtidos, inseridos na  pilha e devolvidos para a fila. 
 
 ```cpp
 void inverteF1P(std::queue<char>* f) { 
@@ -778,7 +778,7 @@ void inverteF2F(std::queue<char>* f);
 #endif  
 ```
 
-Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF2F.cpp) é que está o método ``inverteF2F``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 9) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 8), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 9) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a fila ``f2`` aproximadamente  $\frac{n-1}{2}$ vezes. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2 +1)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF2F.cpp) é que está o método ``inverteF2F()``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 9) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 8), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 9) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a fila ``f2`` aproximadamente  $\frac{n-1}{2}$ vezes. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2 +1)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
 
 ```cpp
 void inverteF2F(std::queue<char>* f) { 
@@ -811,9 +811,100 @@ void inverteF2F(std::queue<char>* f) {
 
 # Exercício 6
 
-## Retornar o menor elemento de pilha em tempo constante
+## Retornar o menor elemento da pilha em tempo constante
+
+Seguindo o padrão do projeto, no arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/obterMinimo.hpp), além das diretrizes, foram declarados uma classe ``PilhaMin``, duas pilhas, sendo uma principal (``pilhaPrincipal``) e uma auxiliar (``pilhaAuxiliar``). Além dos protótipos de funções solicitados no exercício e um método ``vazio()``. Não foram necessárias outras variáveis auxiliares.
+
+```cpp
+#ifndef _OBTER_MINIMO_HPP_
+#define _OBTER_MINIMO_HPP_
+
+#include <stack>
+
+class PilhaMin
+{
+private:
+    std::stack<int> pilhaPrincipal;
+    std::stack<int> pilhaAuxiliar;
+
+public:
+    // incluir variáveis necessárias
+    int topo();
+    int desempilha();
+    void empilha(int t);
+    int obterMinimo();
+    // mais métodos auxiliares
+    bool vazio();
+};
+
+#include "obterMinimo.cpp"
+
+#endif
+```
+
+No arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/obterMinimo.cpp), foram elaborados os métodos solicitados no exercício. A chave para o funcionamento deste algoritmo está no método ``empilha()`` que, cada nova inserção coloca o valor inserido na ``pilhaPrincipal`` e verifica se é menor que o mínimo registrado. Essa verificação é feita apenas consultando o topo da ``pilhaAuxiliar``. Caso seja, o valor é empilhado também na ``pilhaAuxiliar``. Caso contrário, o valor do topo da ``pilhaAuxiliar`` é repetido. Desse modo, o topo da ``pilhaAuxiliar`` sempre retornará o menor valor da ``pilhaPrincipal``. O primeiro valor inserido na pilha é empilhado em ambas as pilhas. Esse método opera em tempo constante, $O(1)$.
+
+```cpp
+void PilhaMin::empilha(int t)
+{
+    if (pilhaPrincipal.empty())
+    {
+        pilhaPrincipal.push(t);
+        pilhaAuxiliar.push(t);
+    }
+    else
+    {
+        pilhaPrincipal.push(t);
+        if (t < pilhaAuxiliar.top())
+        {
+            pilhaAuxiliar.push(t);
+        }
+        else
+        {
+            pilhaAuxiliar.push(pilhaAuxiliar.top());
+        }
+    }
+}
+```
+
+Os demais métodos de consulta e inserção de valores solicitados no exercício também operam em tempo constante, $O(1)$. Ao método ``obterMinimo()`` coube apenas consultar o topo da ``pilhaAuxiliar``.
+
+```cpp
+int PilhaMin::obterMinimo()
+{
+    return pilhaAuxiliar.top();
+}
+```
+
+O método ``topo()`` realiza uma consulta na pilha principal.
+
+```cpp
+int PilhaMin::topo()
+{
+    return pilhaPrincipal.top();
+}
+```
+
+O método ``desempilha()``, retorna o valor que está no topo, além de remover os itens das duas pilhas.
 
 
+```cpp
+nt PilhaMin::desempilha()
+{
+    int topo = pilhaPrincipal.top();
+    pilhaPrincipal.pop();
+    pilhaAuxiliar.pop();
+    return topo;
+}
+```
+
+E o método ``vazio()`` apenas consulta se a ``pilhaPrincipal`` está vazia.
+
+```cpp
+bool PilhaMin::PilhaMin::vazio(){
+    return (pilhaPrincipal.size()>0);
+}
+```
 
 # Exercício 7
 
