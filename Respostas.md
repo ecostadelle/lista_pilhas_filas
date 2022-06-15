@@ -920,9 +920,11 @@ No caso de encontrar um parêntese fechado, os últimos operadores são desempil
 
 No segundo caso, de um operador menos prioritário (por exemplo, multiplicação é mais prioritário que soma), o operador de maior prioridade é desempilhado, inserido na saída e o novo operador é empilhado. Uma observação: um operador de mais prioritário pode ficar sobre um menos prioritário na pilha, porém, o inverso não é permitido.
 
-Ao chegar ao final do laço que percorre a entrada, todos os operadores são desempilhados e inseridos na saída. Esse algoritmo foi documentado por [__Dijkstra, E. W. (1961)__](https://www.cs.utexas.edu/~EWD/MCReps/MR35.PDF) e, segundo o autor, é comparado a uma ferrovia de três vias, na qual os vagões de passageiros tem prioridade em relação aos de carga, em seguida os vagões de maior prioridade são colocados em sequência, desviando-os para a terceira via, que faz essa ordenação, enviando as cargas de maior prioridade antes das cargas menos prioritárias.
+Ao chegar ao final do laço que percorre a entrada, todos os operadores são desempilhados e inseridos na saída. Esse algoritmo foi documentado por [__Dijkstra, E. W. (1961)__](https://www.cs.utexas.edu/~EWD/MCReps/MR35.PDF) e, segundo o autor, é comparado a uma ferrovia de três vias, na qual os vagões de passageiros tem prioridade em relação aos de carga, em seguida os vagões de maior prioridade são colocados em sequência, desviando-os para a terceira via, que faz essa ordenação, enviando as cargas de maior prioridade antes das cargas menos prioritárias. 
 
-Seguindo o padrão do projeto, no arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.hpp), além das diretrizes, foram declarados os protótipos dos métodos que permitiram a conversão das expressões aritméticas em notação polonesa reversa (RPN).
+Diferente do que foi pedido no exercício, esse algoritmo é capaz de converter não apenas expressões parentizadas. Desse modo, vai além do que foi solicitado, indo além.
+
+Para implementá-lo, também foi seguido o padrão que vem sendo aplicado em todo o projeto. No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.hpp), além das diretrizes, foram declarados os protótipos dos métodos que permitiram a conversão das expressões aritméticas em notação polonesa reversa (RPN).
 
 ```cpp
 #ifndef _RPN_HPP_
@@ -943,9 +945,136 @@ void empilha(PilhaDeque *, char);
 #endif
 ```
 
-Nesse exercício, foi utilizado o algoritmo desenvolvido no [__Exercício 1.b__](#b-implementauxe7uxe3o-de-uma-pilha-utilizando-um-deque). Isso porque esse exercício foi o segundo a ser desenvolvido, de modo que permitiu testar a implementação do DEQUE.
+Nesse exercício, foi utilizado a pilha desenvolvida no [__Exercício 1.b__](#b-implementauxe7uxe3o-de-uma-pilha-utilizando-um-deque). Isso porque ele foi o segundo exercício a ser concluído, de modo que permitiu testar a implementação do DEQUE.
+
+No arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.cpp), foram elaborados os métodos que permitiram a conversão. O algoritmo central está no método ``polonesa()`` que recebe como entrada um vetor com a expressão para ser convertida (``expressao``), o número de caracteres da expressão ($n$) e a saída (``saida_polonesa``). Esse método começa criando uma pilha, uma varável para determinar a posição de escrita no vetor de saída e um iterador.
+
+O passo seguinte é varrer a ``expressao`` até encontrar o caractere terminador. Durante a varredura, são separados os operandos dos operadores. E a abertura de parêntese é sempre empilhada como um operador. Os operando são inseridos diretamente na saída.
+
+```cpp
+void polonesa(char *expressao, int N, char *saida_polonesa)
+{
+    PilhaDeque *operadores = new PilhaDeque;
+    int posicaoEscrita = 0;
+    int i = 0;
+    while (expressao[i] not_eq '\0')
+    {
+        char dado = expressao[i++];
+        if (dado == '(')
+        {
+            empilha(operadores, dado);
+        }
+        if (dado == ')')
+        {
+            fechaParentese(operadores, &saida_polonesa[0], &posicaoEscrita);
+        }
+        if ((dado >= 'A') and (dado <= 'Z'))
+        {
+            operando(&saida_polonesa[0], &posicaoEscrita, dado);
+        }
+        if ((dado == '+') or (dado == '-'))
+        {
+            if (operadores->empty())
+            {
+
+                empilha(operadores, dado);
+            }
+            else
+            {
+                while (verificaPrecedencia(operadores->top()) >= 2)
+                {
+                    desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
+                }
+                empilha(operadores, dado);
+            }
+        }
+        if ((dado == '*') or (dado == '/'))
+        {
+            if (operadores->empty())
+            {
+                empilha(operadores, dado);
+            }
+            else
+            {
+                while (verificaPrecedencia(operadores->top()) >= 3)
+                {
+                    desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
+                }
+                empilha(operadores, dado);
+            }
+        }
+    }
+    limpa(operadores, &saida_polonesa[0], &posicaoEscrita);
+    delete operadores;
+}
+```
+
+O método ``empilha()`` apenas insere o dado na pilha de operadores e opera em tempo constante, $O(1)$.
+
+```cpp
+
+void empilha(PilhaDeque *operadores, char dado)
+{
+    operadores->push(dado);
+}
+```
+
+O método ``operando()`` insere o operando na saída e incrementa a ``posicaoEscrita``. Opera em $O(1)$. 
+
+```cpp
+void operando(char *saida_polonesa, int *posicaoEscrita, char dado)
+{
+    saida_polonesa[*posicaoEscrita] = dado;
+    *posicaoEscrita = *posicaoEscrita + 1;
+}
+```
 
 
+```cpp
+void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
+{
+    while (operadores->top() not_eq '(')
+    {
+        desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
+    }
+}
+
+void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
+{
+    while (!operadores->empty())
+    {
+        desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
+    }
+    
+    saida_polonesa[*posicaoEscrita] = '\0';
+}
+void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
+{
+    char dado = operadores->pop();
+    if (dado not_eq '(')
+    {
+        saida_polonesa[*posicaoEscrita] = dado;
+        *posicaoEscrita = *posicaoEscrita + 1;
+    }
+}
+
+int verificaPrecedencia(char dado)
+{
+    if ((dado == '+') or (dado == '-'))
+    {
+        return 2;
+    }
+
+    if ((dado == '*') or (dado == '/'))
+    {
+        return 3;
+    }
+    else
+    {
+        return 0;
+    }
+}
+```
 
 ---
 title: "Lista de Exercícios 4 (Pilhas e Filas)"
