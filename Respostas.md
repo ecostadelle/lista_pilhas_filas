@@ -69,7 +69,7 @@ public:
 };
 ```
 
-Os métodos tiveram seu próprio arquivo de [__implementação (dequeEncadeado.cpp)__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/dequeEncadeado.cpp). Além dos métodos solicitados através do ``concept``, foram implementados um construtor ``Deque()``, que inicia as variáveis em tempo constante $O(1)$, e um destrutor ``~Deque()``, que ao se invocado, percorre todos os elementos do deque, liberando a memória e evita o "vazamento de memória". A complexidade do método destrutor é linearmente depende do tamanho armazenado em ``numeroElementos`` (n), ou seja, $O(n)$ 
+Os métodos tiveram seu próprio arquivo de [__implementação (dequeEncadeado.cpp)__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/dequeEncadeado.cpp). Além dos métodos solicitados através do ``concept``, foram implementados um construtor ``Deque()``, que inicia as variáveis em tempo constante $O(1)$, e um destrutor ``~Deque()``, que ao se invocado, percorre todos os elementos do deque, liberando a memória e evita o "vazamento de memória". A complexidade do método destrutor é linearmente depende do tamanho armazenado em ``numeroElementos`` ($n$), ou seja, $O(n)$ 
 
 ```cpp
 #include "dequeEncadeado.hpp"
@@ -211,7 +211,7 @@ concept DequeTAD = requires(Agregado a, Tipo t)
 static_assert(DequeTAD<Deque<char>, char>);
 ```
 
-## b) Implementação de uma pilha utilizando um DEQUE
+## b) Implementação de uma pilha utilizando um DEQUE {#ex1b}
 
 No arquivo de cabeçalho [__pilhaDeque.hpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/pilhaDeque.hpp), foram declarados, em uma classe, uma variável com o Tipo Abstrato de Dados (TAD) Deque (definindo o tipogenérico como ``char``) e os protótipos das interfaces padrão do TAD pilhaDeque. Preferiu-se utilizar métodos com nomes semelhantes aos disponíveis na Biblioteca de Modelos Padrão (STL - _standard template library_) do C++.
 
@@ -420,7 +420,7 @@ Pilha2F::Pilha2F()
 }
 ```
 
-Já o método destrutor, abaixo, percorre todos os elementos da pilha e os remove. Operando em tempo linearmente dependente do número de elementos armazenado na pilha (n), ou seja, opera em $O(n)$.
+Já o método destrutor, abaixo, percorre todos os elementos da pilha e os remove. Operando em tempo linearmente dependente do número de elementos armazenado na pilha ($n$), ou seja, opera em $O(n)$.
 
 ```cpp
 Pilha2F::~Pilha2F()
@@ -432,7 +432,7 @@ Pilha2F::~Pilha2F()
 }
 ```
 
-O método ``push()`` é o mais importante desta implementação, é nele que é executado a o algoritmo que permitiu a operação solicitada. Quando o usuário solicita um ``push``, todos os elementos da primeira fila (``f1``) são removidos para a segunda (``f2``), o elemento é inserido na ``f1`` e todos os elementos da ``f2`` retornam para a ``f1``. Deste modo, a cada nova inserção são necessárias operações em dobro se comparado com o número de elementos (n), mesmo sendo $O(2n)$, assintoticamente opera em tempo $O(n)$.
+O método ``push()`` é o mais importante desta implementação, é nele que é executado a o algoritmo que permitiu a operação solicitada. Quando o usuário solicita um ``push``, todos os elementos da primeira fila (``f1``) são removidos para a segunda (``f2``), o elemento é inserido na ``f1`` e todos os elementos da ``f2`` retornam para a ``f1``. Deste modo, a cada nova inserção são necessárias operações em dobro se comparado com o número de elementos ($n$), mesmo sendo $O(2n)$, assintoticamente opera em tempo $O(n)$.
 
 ```cpp
 void Pilha2F::push(char t)
@@ -527,7 +527,7 @@ public:
 
 No arquivo de implementação [__fila2P.cpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/fila2P.cpp), foram efetivados os métodos que permitiram a operação solicitada. Assim como nos exercícios anteriores o método destrutor percorre a fila e elimina os valores, a fim de evitar "vazamento de memória". 
 
-Já as implementações mais significativas estão nos métodos ``pop()`` e ``front()``, que movimentam os dados em tempo linearmente dependente do número de elementos (n), ou seja, em $O(n)$.
+Já as implementações mais significativas estão nos métodos ``pop()`` e ``front()``, que movimentam os dados em tempo linearmente dependente do número de elementos ($n$), ou seja, em $O(n)$.
 
 ```cpp
 char Fila2P::pop()
@@ -603,7 +603,7 @@ void inverteF1P(std::queue<char>* f);
 #endif
 ```
 
-É no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) que o algoritmo é realizado. Nesse arquivo o método desempilha todos os elementos em uma fila e depois faz a operação inversa, o dobro do número de elementos (n) determina o número de operações necessárias à inversão. Deste modo, o método ``inverteP1F()`` opera em tempo linearmente dependente do número de elemento (n), ou seja, $O(n)$. Não foram necessários mais espaço auxiliar, além da própria fila permitida pelo exercício
+É no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp) que o algoritmo é realizado. Nesse arquivo o método desempilha todos os elementos em uma fila e depois faz a operação inversa, o dobro do número de elementos ($n$) determina o número de operações necessárias à inversão. Deste modo, o método ``inverteP1F()`` opera em tempo linearmente dependente do número de elemento ($n$), ou seja, $O(n)$. Não foram necessários mais espaço auxiliar, além da própria fila permitida pelo exercício
 
 ```cpp
 void inverteF1P(std::queue<char>* f) { 
@@ -669,7 +669,7 @@ void inverteP2P(std::stack<char> *p)
 
 ## c) Inversão do conteúdo de uma Pilha utilizando uma Pilha
 
-A inversão de uma pilha, utilizando outra pilha e um espaço auxiliar constante, necessitou de muitas iterações. Pensou-se em remover o topo da pilha inicial (``p``) e depois toda o restante da pilha fosse colocado na pilha auxiliar (``p1``). Após isso, o valor que estava no topo é inserido primeiro em ``p``, de modo que o conteúdo do topo vá para a base, em seguida todos os elementos voltam para ``p``. Essa operação repetida sucessivas vezes, como demostrado na *Figura 1*, é capaz de inverter a pilha com um custo de muitas operações de movimentação de dados.
+A inversão de uma pilha, utilizando outra pilha e um espaço auxiliar constante, necessitou de muitas iterações. Pensou-se em remover o topo da pilha inicial (``p``) e depois toda o restante da pilha fosse colocado na pilha auxiliar (``p1``). Após isso, o valor que estava no topo é inserido primeiro em ``p``, de modo que o conteúdo do topo vá para a base, em seguida todos os elementos voltam para ``p``. Essa operação repetida sucessivas vezes, como demostrado na Figura \ref{Fig:1}, é capaz de inverter a pilha com um custo de muitas operações de movimentação de dados.
 
 ![Esquema de inversão de uma pilha utilizando outra](inverteP1P.png){#Fig:1}
 
@@ -758,7 +758,7 @@ void inverteF1P(std::queue<char>* f) {
 
 ## b) Inversão do conteúdo de uma Fila utilizando duas Filas
 
-A inversão de uma fila (``f``), utilizando outras duas filas (``f1`` e ``f2``), necessitou de muitas iterações. Inicialmente, pensou-se em mover $n-1$ elementos de ``f`` para ``f2``, em seguida o último elemento de ``f`` é movido para ``f1``, feito isso, todos os elementos são devolvidos para ``f``. O processo é repetido até que todos os elementos sejam tranferidos para ``f1``, como demostrado na *Figura 2*. Esse algoritmo é capaz de inverter a fila com um custo de muitas operações de movimentação de dados.
+A inversão de uma fila (``f``), utilizando outras duas filas (``f1`` e ``f2``), necessitou de muitas iterações. Inicialmente, pensou-se em mover $n-1$ elementos de ``f`` para ``f2``, em seguida o último elemento de ``f`` é movido para ``f1``, feito isso, todos os elementos são devolvidos para ``f``. O processo é repetido até que todos os elementos sejam tranferidos para ``f1``, como demostrado na Figura \ref{Fig:2}. Esse algoritmo é capaz de inverter a fila com um custo de muitas operações de movimentação de dados.
 
 ![Esquema de inversão de uma fila utilizando outras duas filas](inverteF2F.png){#Fig:2}
 
@@ -914,15 +914,37 @@ Para resolver este exercício, uma pilha armazenou os operadores e um vetor, a s
 
 De modo que um laço percorre a entrada e armazena letras (variáveis) diretamente na saída e sinais (operações) na pilha até encontrar:
 1. um parêntese fechado; ou 
-2. um operador de precedência inferior ao último encontrado. 
+2. um operador menos prioritário ou igual ao último encontrado. 
 
-Assim que uma das duas condições é satisfeita, duas coisas podem ocorrer, respectivamente: 
-1. o último operador é desempilhado, inserido no vetor de saída, e o um parêntese aberto também é desempilhado;
-2. o operador de maior precedência é desempilhado, inserido na saída e o novo operador é empilhado.
+No caso de encontrar um parêntese fechado, os últimos operadores são desempilhados e inseridos no vetor de saída, até que um parêntese aberto seja encontrado, em seguida o parêntese aberto é removido da pilha de operadores;
 
-Ao chegar ao final do laço, todos os operadores são desempilhados e inseridos na saída.
+No segundo caso, de um operador menos prioritário (por exemplo, multiplicação é mais prioritário que soma), o operador de maior prioridade é desempilhado, inserido na saída e o novo operador é empilhado. Uma observação: um operador de mais prioritário pode ficar sobre um menos prioritário na pilha, porém, o inverso não é permitido.
 
-Com o objetivo de determinar as precedências, utilizou-se o código ASCII do caractere subtraído de 41 em módulo 6. Esta transformação faz com que o caractere '*' (decimal 42), torne-se 1; '+' (decimal 43), torne-se 2; '-' (decimal 45), torne-se 4; e, por fim, o caractere '/' (decimal 47), torne-se 0. 
+Ao chegar ao final do laço que percorre a entrada, todos os operadores são desempilhados e inseridos na saída. Esse algoritmo foi documentado por [__Dijkstra, E. W. (1961)__](https://www.cs.utexas.edu/~EWD/MCReps/MR35.PDF) e, segundo o autor, é comparado a uma ferrovia de três vias, na qual os vagões de passageiros tem prioridade em relação aos de carga, em seguida os vagões de maior prioridade são colocados em sequência, desviando-os para a terceira via, que faz essa ordenação, enviando as cargas de maior prioridade antes das cargas menos prioritárias.
+
+Seguindo o padrão do projeto, no arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.hpp), além das diretrizes, foram declarados os protótipos dos métodos que permitiram a conversão das expressões aritméticas em notação polonesa reversa (RPN).
+
+```cpp
+#ifndef _RPN_HPP_
+#define _RPN_HPP_
+
+#include "pilhaDeque.hpp"
+
+int verificaPrecedencia(char);
+void operando(char *, int *, char);
+void fechaParentese(PilhaDeque *, char *, int *);
+void limpa(PilhaDeque *, char *, int *);
+void polonesa(char *, int, char *);
+void desempilha(PilhaDeque *, char *, int *);
+void empilha(PilhaDeque *, char);
+
+#include "rpn.cpp"
+
+#endif
+```
+
+Nesse exercício, foi utilizado o algoritmo desenvolvido no [__Exercício 1.b__](#ex1b). Isso porque esse exercício foi o segundo a ser desenvolvido, de modo que permitiu testar a implementação do DEQUE.
+
 
 
 ---
