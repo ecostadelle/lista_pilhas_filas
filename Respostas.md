@@ -671,7 +671,7 @@ void inverteP2P(std::stack<char> *p)
 
 A inversão de uma pilha, utilizando outra pilha e um espaço auxiliar constante, necessitou de muitas iterações. Pensou-se em remover o topo da pilha inicial (``p``) e depois toda o restante da pilha fosse colocado na pilha auxiliar (``p1``). Após isso, o valor que estava no topo é inserido primeiro em ``p``, de modo que o conteúdo do topo vá para a base, em seguida todos os elementos voltam para ``p``. Essa operação repetida sucessivas vezes, como demostrado na *Figura 1*, é capaz de inverter a pilha com um custo de muitas operações de movimentação de dados.
 
-![Esquema de inversão de uma pilha utilizando outra](inverteP1P.png){#Fig:inverteP1P}
+![Esquema de inversão de uma pilha utilizando outra](inverteP1P.png){#Fig:1}
 
 No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.hpp) foi declarado apenas o protótipo da função. 
 
@@ -689,6 +689,7 @@ void inverteP1P(std::stack<char>* p);
 ```
 
 Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteP1P.cpp) é que está o método ``inverteP1P``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 11) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 5), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 11) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a pilha ``p1`` aproximadamente  $\frac{n-2}{2}$ vezes, devido a remoção do topo antes da entrada. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-2}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2-2n+2)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+
 ```cpp
 void inverteP1P(std::stack<char>* p) { 
     std::stack<char> p1; // uma pilha auxiliar 
@@ -757,10 +758,56 @@ void inverteF1P(std::queue<char>* f) {
 
 ## b) Inversão do conteúdo de uma Fila utilizando duas Filas
 
+A inversão de uma fila (``f``), utilizando outras duas filas (``f1`` e ``f2``), necessitou de muitas iterações. Inicialmente, pensou-se em mover $n-1$ elementos de ``f`` para ``f2``, em seguida o último elemento de ``f`` é movido para ``f1``, feito isso, todos os elementos são devolvidos para ``f``. O processo é repetido até que todos os elementos sejam tranferidos para ``f1``, como demostrado na *Figura 2*. Esse algoritmo é capaz de inverter a fila com um custo de muitas operações de movimentação de dados.
 
-![Esquema de inversão de uma fila utilizando outras duas filas](inverteF2F.png){#Fig:inverteF2F}
+![Esquema de inversão de uma fila utilizando outras duas filas](inverteF2F.png){#Fig:2}
 
 
+No arquivo de [__cabeçalho__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF2F.hpp) foi declarado apenas o protótipo da função (``inverteF2F``). 
+
+```cpp
+#ifndef _INVERTE_F2F_HPP_
+#define _INVERTE_F2F_HPP_
+
+#include <queue>
+
+void inverteF2F(std::queue<char>* f);
+
+#include "inverteF2F.cpp"
+
+#endif  
+```
+
+Já no arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF2F.cpp) é que está o método ``inverteF2F``, onde ocorre um laço dentro de outro. O laço ``for`` (linha 9) ocorre $i$ vezes, porém $i$ depende de ``--n`` (linha 8), de modo que no laço ``while`` (linha 8) ocorre $n-1$ vezes, é possível aproximar a quantidade de iterações do laço ``for`` (linha 9) para $\frac{n-1}{2}$. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). O segundo laço ``while`` (linha 15) percorre a fila ``f2`` aproximadamente  $\frac{n-1}{2}$ vezes. Porém, dentro do laço há duas operações de tempo constante ($2 \cdot \frac{n-1}{2}$). Com todas as operações de tempo constante, a operação de inversão ocorre em $O(2n^2 +1)$, de modo que é dependente do quadrado de $n$, os seja, $O(n^2)$.
+
+```cpp
+void inverteF2F(std::queue<char>* f) { 
+    std::queue<char> f1; // primeira fila auxiliar 
+    std::queue<char> f2; // segunda fila auxiliar 
+    // mais espaço auxiliar constante 
+
+    int n = f->size();               // +1
+
+    while (--n > 0){                 // (n-1)->2n(n-1)=2n^2-2n
+        for (int i = 0; i<n; i++){      // (n-1)/2->(n-1)
+            f2.push(f->front());            // +1
+            f->pop();                       // +1
+        }
+        f1.push(f->front());            // +1
+        f->pop();                       // +1
+        while (!f2.empty()) {           // (n-1)/2->(n-1)
+            f->push(f2.front());            // +1
+            f2.pop();                       // +1
+        }
+    }
+    f1.push(f->front());             // +1
+    f->pop();                        // +1
+    while (!f1.empty()) {            // (n-1)->2(n-1)=2n-2
+        f->push(f1.front());            // +1
+        f1.pop();                       // +1
+    }                             // 2n^2-2n+2n-2+3=2n^2+1
+}
+```
 
 # Exercício 6
 
