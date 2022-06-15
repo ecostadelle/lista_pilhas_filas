@@ -557,7 +557,7 @@ constante \(O(1)\), e um destrutor \passthrough{\lstinline!\~Deque()!},
 que ao se invocado, percorre todos os elementos do deque, liberando a
 memória e evita o ``vazamento de memória''. A complexidade do método
 destrutor é linearmente depende do tamanho armazenado em
-\passthrough{\lstinline!numeroElementos!} (n), ou seja, \(O(n)\)
+\passthrough{\lstinline!numeroElementos!} (\(n\)), ou seja, \(O(n)\)
 
 \begin{lstlisting}[language={C++}]
 #include "dequeEncadeado.hpp"
@@ -989,7 +989,7 @@ Pilha2F::Pilha2F()
 
 Já o método destrutor, abaixo, percorre todos os elementos da pilha e os
 remove. Operando em tempo linearmente dependente do número de elementos
-armazenado na pilha (n), ou seja, opera em \(O(n)\).
+armazenado na pilha (\(n\)), ou seja, opera em \(O(n)\).
 
 \begin{lstlisting}[language={C++}]
 Pilha2F::~Pilha2F()
@@ -1011,7 +1011,8 @@ operação solicitada. Quando o usuário solicita um
 \passthrough{\lstinline!f2!} retornam para a
 \passthrough{\lstinline!f1!}. Deste modo, a cada nova inserção são
 necessárias operações em dobro se comparado com o número de elementos
-(n), mesmo sendo \(O(2n)\), assintoticamente opera em tempo \(O(n)\).
+(\(n\)), mesmo sendo \(O(2n)\), assintoticamente opera em tempo
+\(O(n)\).
 
 \begin{lstlisting}[language={C++}]
 void Pilha2F::push(char t)
@@ -1139,7 +1140,7 @@ elimina os valores, a fim de evitar ``vazamento de memória''.
 Já as implementações mais significativas estão nos métodos
 \passthrough{\lstinline!pop()!} e \passthrough{\lstinline!front()!}, que
 movimentam os dados em tempo linearmente dependente do número de
-elementos (n), ou seja, em \(O(n)\).
+elementos (\(n\)), ou seja, em \(O(n)\).
 
 \begin{lstlisting}[language={C++}]
 char Fila2P::pop()
@@ -1234,11 +1235,11 @@ void inverteF1P(std::queue<char>* f);
 \href{https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/inverteF1P.cpp}{\textbf{implementação}}
 que o algoritmo é realizado. Nesse arquivo o método desempilha todos os
 elementos em uma fila e depois faz a operação inversa, o dobro do número
-de elementos (n) determina o número de operações necessárias à inversão.
-Deste modo, o método \passthrough{\lstinline!inverteP1F()!} opera em
-tempo linearmente dependente do número de elemento (n), ou seja,
-\(O(n)\). Não foram necessários mais espaço auxiliar, além da própria
-fila permitida pelo exercício
+de elementos (\(n\)) determina o número de operações necessárias à
+inversão. Deste modo, o método \passthrough{\lstinline!inverteP1F()!}
+opera em tempo linearmente dependente do número de elemento (\(n\)), ou
+seja, \(O(n)\). Não foram necessários mais espaço auxiliar, além da
+própria fila permitida pelo exercício
 
 \begin{lstlisting}[language={C++}]
 void inverteF1P(std::queue<char>* f) { 
@@ -1467,9 +1468,9 @@ seguida o último elemento de \passthrough{\lstinline!f!} é movido para
 \passthrough{\lstinline!f1!}, feito isso, todos os elementos são
 devolvidos para \passthrough{\lstinline!f!}. O processo é repetido até
 que todos os elementos sejam tranferidos para
-\passthrough{\lstinline!f1!}, como demostrado na \emph{Figura 2}. Esse
-algoritmo é capaz de inverter a fila com um custo de muitas operações de
-movimentação de dados.
+\passthrough{\lstinline!f1!}, como demostrado na Figura \ref{Fig:2}.
+Esse algoritmo é capaz de inverter a fila com um custo de muitas
+operações de movimentação de dados.
 
 \begin{figure}
 \hypertarget{Fig:2}{%
@@ -1683,23 +1684,60 @@ vetor, a saída.
 
 De modo que um laço percorre a entrada e armazena letras (variáveis)
 diretamente na saída e sinais (operações) na pilha até encontrar: 1. um
-parêntese fechado; ou 2. um operador de precedência inferior ao último
-encontrado.
+parêntese fechado; ou 2. um operador menos prioritário ou igual ao
+último encontrado.
 
-Assim que uma das duas condições é satisfeita, duas coisas podem
-ocorrer, respectivamente: 1. o último operador é desempilhado, inserido
-no vetor de saída, e o um parêntese aberto também é desempilhado; 2. o
-operador de maior precedência é desempilhado, inserido na saída e o novo
-operador é empilhado.
+No caso de encontrar um parêntese fechado, os últimos operadores são
+desempilhados e inseridos no vetor de saída, até que um parêntese aberto
+seja encontrado, em seguida o parêntese aberto é removido da pilha de
+operadores;
 
-Ao chegar ao final do laço, todos os operadores são desempilhados e
-inseridos na saída.
+No segundo caso, de um operador menos prioritário (por exemplo,
+multiplicação é mais prioritário que soma), o operador de maior
+prioridade é desempilhado, inserido na saída e o novo operador é
+empilhado. Uma observação: um operador de mais prioritário pode ficar
+sobre um menos prioritário na pilha, porém, o inverso não é permitido.
 
-Com o objetivo de determinar as precedências, utilizou-se o código ASCII
-do caractere subtraído de 41 em módulo 6. Esta transformação faz com que
-o caractere '*' (decimal 42), torne-se 1; `+' (decimal 43), torne-se 2;
-`-' (decimal 45), torne-se 4; e, por fim, o caractere `/' (decimal 47),
-torne-se 0.
+Ao chegar ao final do laço que percorre a entrada, todos os operadores
+são desempilhados e inseridos na saída. Esse algoritmo foi documentado
+por
+\href{https://www.cs.utexas.edu/~EWD/MCReps/MR35.PDF}{\textbf{Dijkstra,
+E. W. (1961)}} e, segundo o autor, é comparado a uma ferrovia de três
+vias, na qual os vagões de passageiros tem prioridade em relação aos de
+carga, em seguida os vagões de maior prioridade são colocados em
+sequência, desviando-os para a terceira via, que faz essa ordenação,
+enviando as cargas de maior prioridade antes das cargas menos
+prioritárias.
+
+Seguindo o padrão do projeto, no arquivo de
+\href{https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.hpp}{\textbf{cabeçalho}},
+além das diretrizes, foram declarados os protótipos dos métodos que
+permitiram a conversão das expressões aritméticas em notação polonesa
+reversa (RPN).
+
+\begin{lstlisting}[language={C++}]
+#ifndef _RPN_HPP_
+#define _RPN_HPP_
+
+#include "pilhaDeque.hpp"
+
+int verificaPrecedencia(char);
+void operando(char *, int *, char);
+void fechaParentese(PilhaDeque *, char *, int *);
+void limpa(PilhaDeque *, char *, int *);
+void polonesa(char *, int, char *);
+void desempilha(PilhaDeque *, char *, int *);
+void empilha(PilhaDeque *, char);
+
+#include "rpn.cpp"
+
+#endif
+\end{lstlisting}
+
+Nesse exercício, foi utilizado o algoritmo desenvolvido no
+\protect\hyperlink{b-implementauxe7uxe3o-de-uma-pilha-utilizando-um-deque}{\textbf{Exercício
+1.b}}. Isso porque esse exercício foi o segundo a ser desenvolvido, de
+modo que permitiu testar a implementação do DEQUE.
 
 \backmatter
 \end{document}

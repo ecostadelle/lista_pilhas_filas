@@ -211,7 +211,7 @@ concept DequeTAD = requires(Agregado a, Tipo t)
 static_assert(DequeTAD<Deque<char>, char>);
 ```
 
-## b) Implementação de uma pilha utilizando um DEQUE {#ex1b}
+## b) Implementação de uma pilha utilizando um DEQUE
 
 No arquivo de cabeçalho [__pilhaDeque.hpp__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/pilhaDeque.hpp), foram declarados, em uma classe, uma variável com o Tipo Abstrato de Dados (TAD) Deque (definindo o tipogenérico como ``char``) e os protótipos das interfaces padrão do TAD pilhaDeque. Preferiu-se utilizar métodos com nomes semelhantes aos disponíveis na Biblioteca de Modelos Padrão (STL - _standard template library_) do C++.
 
@@ -943,7 +943,7 @@ void empilha(PilhaDeque *, char);
 #endif
 ```
 
-Nesse exercício, foi utilizado o algoritmo desenvolvido no [__Exercício 1.b__](#ex1b). Isso porque esse exercício foi o segundo a ser desenvolvido, de modo que permitiu testar a implementação do DEQUE.
+Nesse exercício, foi utilizado o algoritmo desenvolvido no [__Exercício 1.b__](#b-implementauxe7uxe3o-de-uma-pilha-utilizando-um-deque). Isso porque esse exercício foi o segundo a ser desenvolvido, de modo que permitiu testar a implementação do DEQUE.
 
 
 
