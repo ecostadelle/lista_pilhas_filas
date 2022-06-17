@@ -43,8 +43,8 @@ bin/%.o: src/%.cpp $(HEADERS)
 	$(CC) $< $(CC_OPTS) -c -o $@
 
 pdf: 
-	pandoc Respostas.md -o Respostas.pdf --from markdown --template eisvogel --top-level-division=chapter -s --highlight-style kate -V classoption=oneside --listings
-	start "" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "C:\github\edAtividade4\lista_pilhas_filas\Respostas.pdf"
+	pandoc Respostas.md -o Lista1.pdf --from markdown --template eisvogel --top-level-division=chapter -s --highlight-style kate -V classoption=oneside --listings
+	start "" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "C:\github\edAtividade4\lista_pilhas_filas\Lista1.pdf"
 
 tex: 
 	pandoc Respostas.md -o Respostas.tex --from markdown --template eisvogel --top-level-division=chapter -V classoption=oneside --listings

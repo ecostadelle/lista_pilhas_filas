@@ -949,7 +949,7 @@ Nesse exercício, foi utilizado a pilha desenvolvida no [__Exercício 1.b__](#b-
 
 No arquivo de [__implementação__](https://github.com/ecostadelle/lista_pilhas_filas/blob/main/include/rpn.cpp), foram elaborados os métodos que permitiram a conversão. O algoritmo central está no método ``polonesa()`` que recebe como entrada um vetor com a expressão para ser convertida (``expressao``), o número de caracteres da expressão ($n$) e a saída (``saida_polonesa``). Esse método começa criando uma pilha, uma varável para determinar a posição de escrita no vetor de saída e um iterador.
 
-O passo seguinte é varrer a ``expressao`` até encontrar o caractere terminador. Durante a varredura, são separados os operandos dos operadores. E a abertura de parêntese é sempre empilhada como um operador. Os operando são inseridos diretamente na saída.
+O passo seguinte é varrer a ``expressao`` até encontrar o caractere terminador. Durante a varredura, são separados os operandos dos operadores. E a abertura de parêntese é sempre empilhada como um operador. Os operandos são inseridos diretamente na saída.
 
 ```cpp
 void polonesa(char *expressao, int N, char *saida_polonesa)
@@ -961,43 +961,26 @@ void polonesa(char *expressao, int N, char *saida_polonesa)
     {
         char dado = expressao[i++];
         if (dado == '(')
-        {
             empilha(operadores, dado);
-        }
         if (dado == ')')
-        {
             fechaParentese(operadores, &saida_polonesa[0], &posicaoEscrita);
-        }
         if ((dado >= 'A') and (dado <= 'Z'))
-        {
             operando(&saida_polonesa[0], &posicaoEscrita, dado);
-        }
-        if ((dado == '+') or (dado == '-'))
-        {
-            if (operadores->empty())
-            {
-
+        if ((dado == '+') or (dado == '-')){
+            if (operadores->empty()){
                 empilha(operadores, dado);
-            }
-            else
-            {
-                while (verificaPrecedencia(operadores->top()) >= 2)
-                {
+            } else {
+                while (verificaPrecedencia(operadores->top()) >= 2){
                     desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
                 }
                 empilha(operadores, dado);
             }
         }
-        if ((dado == '*') or (dado == '/'))
-        {
-            if (operadores->empty())
-            {
+        if ((dado == '*') or (dado == '/')){
+            if (operadores->empty()){
                 empilha(operadores, dado);
-            }
-            else
-            {
-                while (verificaPrecedencia(operadores->top()) >= 3)
-                {
+            } else {
+                while (verificaPrecedencia(operadores->top()) >= 3){
                     desempilha(operadores, &saida_polonesa[0], &posicaoEscrita);
                 }
                 empilha(operadores, dado);
@@ -1028,7 +1011,7 @@ void operando(char *saida_polonesa, int *posicaoEscrita, char dado)
     *posicaoEscrita = *posicaoEscrita + 1;
 }
 ```
-
+O método ``fechaParentese()`` desempilha os operadores até encontrar o abertura do parêntese e insere na saída. Opera em $O(1)$.
 
 ```cpp
 void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
@@ -1038,7 +1021,11 @@ void fechaParentese(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEs
         desempilha(operadores, &saida_polonesa[0], posicaoEscrita);
     }
 }
+```
 
+O método ``limpa()``, é executado ao final e desempilha todos os operadores e insere na saída. Opera em $O(1)$.
+
+```cpp
 void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
     while (!operadores->empty())
@@ -1048,6 +1035,11 @@ void limpa(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
     
     saida_polonesa[*posicaoEscrita] = '\0';
 }
+```
+
+O método ``desempilha()``, desempilha o topo da pilha de operadores e insere na saída. Opera em $O(1)$.
+
+```cpp
 void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrita)
 {
     char dado = operadores->pop();
@@ -1057,7 +1049,11 @@ void desempilha(PilhaDeque *operadores, char *saida_polonesa, int *posicaoEscrit
         *posicaoEscrita = *posicaoEscrita + 1;
     }
 }
+```
 
+O método ``verificaPrecedencia()``, compara a precedência entre dois operadores. Opera em $O(1)$.
+
+```cpp
 int verificaPrecedencia(char dado)
 {
     if ((dado == '+') or (dado == '-'))
@@ -1076,10 +1072,12 @@ int verificaPrecedencia(char dado)
 }
 ```
 
+Como todos os métodos são operadores de tempo constante, o tempo de execução do algoritmo é $O(N)$.
+
 ---
 title: "Lista de Exercícios 4 (Pilhas e Filas)"
 author: [Ewerton Luiz Costadelle]
-date: "13/06/2022"
+date: "17/06/2022"
 keywords: [Pilha Fila Deque RPN]
 toc: true 
 toc-own-page: true
